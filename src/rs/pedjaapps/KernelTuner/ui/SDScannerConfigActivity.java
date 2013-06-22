@@ -18,19 +18,41 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
+<<<<<<< HEAD
+=======
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+
+import rs.pedjaapps.KernelTuner.R;
+import rs.pedjaapps.KernelTuner.entry.SDSummaryEntry;
+import rs.pedjaapps.KernelTuner.helpers.SDSummaryAdapter;
+import rs.pedjaapps.KernelTuner.tools.Tools;
+>>>>>>> ginger
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -38,6 +60,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
+<<<<<<< HEAD
 import de.ankri.views.Switch;
 
 import java.io.File;
@@ -57,15 +80,18 @@ import rs.pedjaapps.KernelTuner.ui.SDScannerConfigActivity;
 import rs.pedjaapps.KernelTuner.tools.Tools;
 
 public class SDScannerConfigActivity extends SherlockActivity
+=======
+public class SDScannerConfigActivity extends Activity
+>>>>>>> ginger
 {
 
-	private Switch sw;
+	private CheckBox sw;
 	private static final int GET_CODE = 0;
 	  String pt;
 
 	  TextView path;
 	  LinearLayout chart;
-	  int labelColor;
+	  int labelColor = Color.WHITE;
 	  SDSummaryAdapter summaryAdapter;
 	  ProgressDialog pd;
 	  List<SDSummaryEntry> entries;
@@ -87,8 +113,12 @@ public class SDScannerConfigActivity extends SherlockActivity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+<<<<<<< HEAD
 		
 		labelColor = Color.WHITE;
+=======
+
+>>>>>>> ginger
 		super.onCreate(savedInstanceState);
 
 		boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
@@ -105,15 +135,18 @@ public class SDScannerConfigActivity extends SherlockActivity
 				  getResources().getString(R.string.archives)};
 		icons = new int[] {R.drawable.apk, R.drawable.movie, R.drawable.music, R.drawable.img, R.drawable.doc, R.drawable.arch};
 		CALCULATING =  getResources().getString(R.string.sd_calculating);
+<<<<<<< HEAD
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> ginger
 		final SharedPreferences.Editor editor = preferences.edit();
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true)
 		{AdView adView = (AdView)findViewById(R.id.ad);
 			adView.loadAd(new AdRequest());}
 		
-		sw = (Switch)findViewById(R.id.switch1);
+		sw = (CheckBox)findViewById(R.id.switch1);
 		sw.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
 			@Override
@@ -128,7 +161,7 @@ public class SDScannerConfigActivity extends SherlockActivity
 			}
 			
 		});
-		final Switch displayType = (Switch)findViewById(R.id.display_in_switch);
+		final CheckBox displayType = (CheckBox)findViewById(R.id.display_in_switch);
 		displayType.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
 			@Override
@@ -228,20 +261,6 @@ public class SDScannerConfigActivity extends SherlockActivity
 		((TextView)findViewById(R.id.mem_used)).setText(getResources().getString(R.string.mem_used)+Tools.byteToHumanReadableSize(Tools.getUsedSpaceInBytesOnExternalStorage()));
 		((TextView)findViewById(R.id.mem_free)).setText(getResources().getString(R.string.mem_free)+Tools.byteToHumanReadableSize(Tools.getAvailableSpaceInBytesOnExternalStorage()));
 	  }
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
-	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

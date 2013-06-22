@@ -18,6 +18,7 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
+<<<<<<< HEAD
 import android.content.*;
 import android.os.*;
 import android.widget.*;
@@ -35,6 +36,34 @@ import rs.pedjaapps.KernelTuner.helpers.*;
 
 import android.view.View;
 import android.view.View.OnClickListener;
+=======
+import java.util.ArrayList;
+import java.util.List;
+
+import rs.pedjaapps.KernelTuner.R;
+import rs.pedjaapps.KernelTuner.entry.Profile;
+import rs.pedjaapps.KernelTuner.entry.Voltage;
+import rs.pedjaapps.KernelTuner.helpers.DatabaseHandler;
+import rs.pedjaapps.KernelTuner.helpers.IOHelper;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+>>>>>>> ginger
 
 public class ProfileEditor extends SherlockActivity
 {
@@ -98,7 +127,10 @@ public class ProfileEditor extends SherlockActivity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+<<<<<<< HEAD
 		
+=======
+>>>>>>> ginger
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.profile_editor);
@@ -326,7 +358,7 @@ public class ProfileEditor extends SherlockActivity
 		String[] sweep2wake = {getResources().getString(R.string.unchanged),"OFF","ON with no backlight","ON with backlight"};
 
 
-		/*if(CPUInfo.cpu0Online()==true)
+		/*if(CPUInfo.cpu0Exists()==true)
 		 {*/
 		/**spinner1*/
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, freqs);
@@ -406,7 +438,7 @@ public class ProfileEditor extends SherlockActivity
         	    }
         	});
 		
-		if(IOHelper.cpu1Online()==true)
+		if(IOHelper.cpu1Exists()==true)
 		{
 			/**spinner3*/
 			ArrayAdapter<String> spinner3ArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, freqs);
@@ -492,7 +524,7 @@ public class ProfileEditor extends SherlockActivity
 			cpu1maxll.setVisibility(View.GONE);
 			cpu1govll.setVisibility(View.GONE);
 		}
-		if(IOHelper.cpu2Online()==true)
+		if(IOHelper.cpu2Exists()==true)
 		{
 			/**spinner5*/
 			ArrayAdapter<String> spinner5ArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, freqs);
@@ -578,7 +610,7 @@ public class ProfileEditor extends SherlockActivity
 			cpu2maxll.setVisibility(View.GONE);
 			cpu2govll.setVisibility(View.GONE);
 		}
-		if(IOHelper.cpu3Online()==true)
+		if(IOHelper.cpu3Exists()==true)
 		{
 			/**spinner7*/
 
@@ -868,7 +900,10 @@ public class ProfileEditor extends SherlockActivity
 
 			s2wll.setVisibility(View.GONE);
 		}
+		
+		((Button)findViewById(R.id.save)).setOnClickListener(new View.OnClickListener() {
 			
+<<<<<<< HEAD
 	}
 
 
@@ -898,66 +933,76 @@ public boolean onOptionsItemSelected(MenuItem item) {
 		try{
 			sdcache = Integer.parseInt(ed4.getText().toString());
 		}catch(NumberFormatException e){
+=======
+			@Override
+			public void onClick(View v) {
+				if(name.getText().toString().length()<1 || name.getText().toString().equals(""))
+				{
+					Toast.makeText(getApplicationContext(), getResources().getString(R.string.empty_profile_name), Toast.LENGTH_LONG).show();
+					
+				}
+				else{
+				int vsync = -1;
+				int fcharge = -1;
+				int sdcache = 0;
+				try{
+					sdcache = Integer.parseInt(ed4.getText().toString());
+				}catch(NumberFormatException e){
+					
+				}
+				if(vsyncOn.isChecked()){
+					vsync=1;
+				}
+				else if(vsyncOff.isChecked()){
+					vsync = 0;
+				}
+				
+				if(fchargeOn.isChecked()){
+					fcharge=1;
+				}
+				else if(fchargeOff.isChecked()){
+					fcharge = 0;
+				}
+				mtd = ed1.getText().toString();
+				mtu = ed2.getText().toString();
+				if(profileName!=null && !profileName.equals("")){
+					db.deleteProfileByName(profile);
+				}
+				Name = name.getText().toString();
+				Intent intent = new Intent();
+				intent.putExtra("Name", Name);
+				intent.putExtra("cpu0min", cpu0min);
+				intent.putExtra("cpu0max", cpu0max);
+				intent.putExtra("cpu1min", cpu1min);
+				intent.putExtra("cpu1max", cpu1max);
+				intent.putExtra("cpu2min", cpu2min);
+				intent.putExtra("cpu2max", cpu2max);
+				intent.putExtra("cpu3min", cpu3min);
+				intent.putExtra("cpu3max", cpu3max);
+				intent.putExtra("cpu0gov", cpu0gov);
+				intent.putExtra("cpu1gov", cpu1gov);
+				intent.putExtra("cpu2gov", cpu2gov);
+				intent.putExtra("cpu3gov", cpu3gov);
+				intent.putExtra("voltageProfile", voltage);
+				intent.putExtra("mtd", mtd);
+				intent.putExtra("mtu", mtu);
+				intent.putExtra("gpu2d", gpu2d);
+				intent.putExtra("gpu3d", gpu3d);
+				intent.putExtra("buttonsBacklight", ed3.getText().toString());
+				intent.putExtra("vsync", vsync);
+				intent.putExtra("fcharge", fcharge);
+				intent.putExtra("cdepth", cdepth);
+				intent.putExtra("io", scheduler);
+				intent.putExtra("sdcache", sdcache);
+				intent.putExtra("s2w", s2w);
+				setResult(RESULT_OK, intent);
+				finish();
+				}
+			}
+		});
+>>>>>>> ginger
 			
-		}
-		if(vsyncOn.isChecked()){
-			vsync=1;
-		}
-		else if(vsyncOff.isChecked()){
-			vsync = 0;
-		}
-		
-		if(fchargeOn.isChecked()){
-			fcharge=1;
-		}
-		else if(fchargeOff.isChecked()){
-			fcharge = 0;
-		}
-		mtd = ed1.getText().toString();
-		mtu = ed2.getText().toString();
-		if(profileName!=null && !profileName.equals("")){
-			db.deleteProfileByName(profile);
-		}
-		Name = name.getText().toString();
-		Intent intent = new Intent();
-		intent.putExtra("Name", Name);
-		intent.putExtra("cpu0min", cpu0min);
-		intent.putExtra("cpu0max", cpu0max);
-		intent.putExtra("cpu1min", cpu1min);
-		intent.putExtra("cpu1max", cpu1max);
-		intent.putExtra("cpu2min", cpu2min);
-		intent.putExtra("cpu2max", cpu2max);
-		intent.putExtra("cpu3min", cpu3min);
-		intent.putExtra("cpu3max", cpu3max);
-		intent.putExtra("cpu0gov", cpu0gov);
-		intent.putExtra("cpu1gov", cpu1gov);
-		intent.putExtra("cpu2gov", cpu2gov);
-		intent.putExtra("cpu3gov", cpu3gov);
-		intent.putExtra("voltageProfile", voltage);
-		intent.putExtra("mtd", mtd);
-		intent.putExtra("mtu", mtu);
-		intent.putExtra("gpu2d", gpu2d);
-		intent.putExtra("gpu3d", gpu3d);
-		intent.putExtra("buttonsBacklight", ed3.getText().toString());
-		intent.putExtra("vsync", vsync);
-		intent.putExtra("fcharge", fcharge);
-		intent.putExtra("cdepth", cdepth);
-		intent.putExtra("io", scheduler);
-		intent.putExtra("sdcache", sdcache);
-		intent.putExtra("s2w", s2w);
-		setResult(RESULT_OK, intent);
-		finish();
-		}
 	}
-		
-	if (item.getItemId() == R.id.cancel)
-	{
-    	finish();
-	}
-
-return super.onOptionsItemSelected(item);
-
-}
 
 }
 

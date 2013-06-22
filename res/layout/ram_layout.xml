@@ -6,7 +6,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
 		android:orientation="vertical"
-		android:gravity="bottom|end">
+		android:gravity="bottom|right">
 
         <TextView
             android:id="@+id/free"
@@ -14,8 +14,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/mem_free"
-			android:layout_gravity="end"
-			android:gravity="end"/>
+			android:layout_gravity="right"
+			android:gravity="right"/>
 
         <TextView
             android:id="@+id/total"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/mem_total"
-			android:layout_gravity="end"/>
+			android:layout_gravity="right"/>
 
        
 

@@ -203,8 +203,7 @@
 			    android:id="@+id/button1"
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
-			    android:text="@string/presets" 
-			    style="?android:attr/buttonBarButtonStyle"/>
+			    android:text="@string/presets" />
 
 		</LinearLayout>
 	</ScrollView>

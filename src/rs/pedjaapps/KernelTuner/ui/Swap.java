@@ -18,6 +18,7 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
+<<<<<<< HEAD
 import android.app.*;
 import android.content.*;
 import android.os.*;
@@ -37,8 +38,39 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 
+=======
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+>>>>>>> ginger
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.tools.Tools;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class Swap extends SherlockActivity
 {
@@ -284,9 +316,12 @@ public class Swap extends SherlockActivity
 
 		setContentView(R.layout.swap);
 		
+<<<<<<< HEAD
 		
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> ginger
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
 
 		Button activate = (Button)findViewById(R.id.button1);
@@ -592,20 +627,6 @@ public class Swap extends SherlockActivity
 				}
 			});
 
-	}
-    @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
 	}
 
 }

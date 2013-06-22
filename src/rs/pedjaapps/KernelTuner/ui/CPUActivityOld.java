@@ -19,7 +19,6 @@
 package rs.pedjaapps.KernelTuner.ui;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,7 +38,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.execution.CommandCapture;
 
-import rs.pedjaapps.KernelTuner.ui.KernelTuner;
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import rs.pedjaapps.KernelTuner.tools.ChangeGovernor;
@@ -111,10 +109,10 @@ public class CPUActivityOld extends SherlockActivity
 		protected Boolean doInBackground(Boolean... args)
 		{
 			freqEntries = IOHelper.frequencies();
-			cpu0Online = IOHelper.cpu0Online();
-			cpu1Online = IOHelper.cpu1Online();
-			cpu2Online = IOHelper.cpu2Online();
-			cpu3Online = IOHelper.cpu3Online();
+			cpu0Online = IOHelper.cpu0Exists();
+			cpu1Online = IOHelper.cpu1Exists();
+			cpu2Online = IOHelper.cpu2Exists();
+			cpu3Online = IOHelper.cpu3Exists();
 			for(IOHelper.FreqsEntry f: freqEntries){
 				frequencies.add(f.getFreq()+"");
 			}
@@ -134,7 +132,7 @@ public class CPUActivityOld extends SherlockActivity
 					catch(Exception e){
 						
 					}
-		            if (IOHelper.cpu1Online() == true)
+		            if (IOHelper.cpu1Exists() == true)
 					{
 		            	CommandCapture command1 = new CommandCapture(0, 
 		            "echo 0 > /sys/kernel/msm_mpdecision/conf/enabled",
@@ -153,7 +151,7 @@ public class CPUActivityOld extends SherlockActivity
 								
 							}
 					}
-		            if (IOHelper.cpu2Online() == true)
+		            if (IOHelper.cpu2Exists() == true)
 					{
 		            	CommandCapture command1 = new CommandCapture(0, 
 		            "echo 0 > /sys/kernel/msm_mpdecision/conf/enabled",
@@ -172,7 +170,7 @@ public class CPUActivityOld extends SherlockActivity
 								
 							}
 					}
-		            if (IOHelper.cpu3Online() == true)
+		            if (IOHelper.cpu3Exists() == true)
 					{
 		            	CommandCapture command1 = new CommandCapture(0,
 		            "echo 0 > /sys/kernel/msm_mpdecision/conf/enabled",
@@ -199,7 +197,7 @@ public class CPUActivityOld extends SherlockActivity
 				
 				
 
-		            if (IOHelper.cpu1Online() == true)
+		            if (IOHelper.cpu1Exists() == true)
 					{
 		            	CommandCapture command = new CommandCapture(0, 
 		            "echo 1 > /sys/kernel/msm_mpdecision/conf/enabled",
@@ -213,7 +211,7 @@ public class CPUActivityOld extends SherlockActivity
 								
 							}
 					}
-		            if (IOHelper.cpu2Online() == true)
+		            if (IOHelper.cpu2Exists() == true)
 					{
 		            	CommandCapture command = new CommandCapture(0,
 		            	"echo 1 > /sys/kernel/msm_mpdecision/conf/enabled",
@@ -228,7 +226,7 @@ public class CPUActivityOld extends SherlockActivity
 							}
 							
 					}
-		            if (IOHelper.cpu3Online() == true)
+		            if (IOHelper.cpu3Exists() == true)
 					{
 		            	CommandCapture command = new CommandCapture(0,
 		            	"echo 1 > /sys/kernel/msm_mpdecision/conf/enabled",
@@ -272,7 +270,13 @@ public class CPUActivityOld extends SherlockActivity
 	{
 		c = this;
 		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(c);
+<<<<<<< HEAD
 
+=======
+		
+		
+		
+>>>>>>> ginger
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.cpu_tweaks_old);
@@ -611,21 +615,6 @@ public class CPUActivityOld extends SherlockActivity
 
 
 		}
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(c, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
 	}
 
 }

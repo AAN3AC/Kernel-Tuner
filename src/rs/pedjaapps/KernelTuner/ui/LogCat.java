@@ -133,6 +133,7 @@ public class LogCat extends SherlockListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+<<<<<<< HEAD
 		setContentView(R.layout.logcat);
 		
 		//getWindow().setTitle(getResources().getString(R.string.app_name));
@@ -142,6 +143,12 @@ public class LogCat extends SherlockListActivity {
 		mPrefs = new Prefs(this);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+=======
+		
+		setContentView(R.layout.logcat);
+		mThis = this;
+		mPrefs = new Prefs(this);
+>>>>>>> ginger
 		
 		mLogList = (ListView) findViewById(android.R.id.list);
 		mLogList.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
@@ -258,9 +265,7 @@ public class LogCat extends SherlockListActivity {
 		super.onCreateOptionsMenu(menu);
 
 		mPlayItem = menu.add(0, MENU_PLAY, 0, R.string.pause_menu);
-		mPlayItem.setIcon(android.R.drawable.ic_media_pause)
-		.setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		mPlayItem.setIcon(android.R.drawable.ic_media_pause);
 		setPlayMenu();
 
 		mFilterItem = menu.add(
@@ -269,22 +274,15 @@ public class LogCat extends SherlockListActivity {
 				0,
 				getResources().getString(R.string.filter_menu,
 						mPrefs.getFilter()));
-		mFilterItem.setIcon(android.R.drawable.ic_menu_search)
-		.setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_IF_ROOM
-						| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		mFilterItem.setIcon(android.R.drawable.ic_menu_search);
 		setFilterMenu();
 
 		MenuItem clearItem = menu.add(0, MENU_CLEAR, 0, R.string.clear_menu);
-		clearItem.setIcon(android.R.drawable.ic_menu_close_clear_cancel)
-		.setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		clearItem.setIcon(android.R.drawable.ic_menu_close_clear_cancel);
 
 
 		MenuItem saveItem = menu.add(0, MENU_SAVE, 0, R.string.save_menu);
-		saveItem.setIcon(android.R.drawable.ic_menu_save)
-		.setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		saveItem.setIcon(android.R.drawable.ic_menu_save);
 
 
 		return true;
@@ -345,9 +343,7 @@ public class LogCat extends SherlockListActivity {
 			clear();
 			reset();
 			return true;
-		case android.R.id.home:
-		    finish();
-			return true;
+		
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -482,7 +478,10 @@ public class LogCat extends SherlockListActivity {
 		if (!mPlay) {
 			return;
 		}
+<<<<<<< HEAD
 				getSupportActionBar().setSubtitle("paused");
+=======
+>>>>>>> ginger
 		if (mLogcat != null) {
 			mLogcat.setPlay(false);
 			mPlay = false;
@@ -494,7 +493,10 @@ public class LogCat extends SherlockListActivity {
 		if (mPlay) {
 			return;
 		}
+<<<<<<< HEAD
 		getSupportActionBar().setSubtitle("running");
+=======
+>>>>>>> ginger
 		if (mLogcat != null) {
 			mLogcat.setPlay(true);
 			mPlay = true;

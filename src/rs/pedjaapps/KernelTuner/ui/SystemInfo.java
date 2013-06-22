@@ -28,8 +28,12 @@ import android.graphics.*;
 import android.hardware.*;
 import android.os.*;
 import android.preference.*;
+<<<<<<< HEAD
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+=======
+import android.test.suitebuilder.annotation.Suppress;
+>>>>>>> ginger
 import android.util.*;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -39,17 +43,23 @@ import android.widget.*;
 import java.io.*;
 import java.util.*;
 
+<<<<<<< HEAD
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+=======
+>>>>>>> ginger
 
 import rs.pedjaapps.KernelTuner.helpers.*;
 
-import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.tools.Tools;
 
+<<<<<<< HEAD
 public class SystemInfo extends SherlockFragmentActivity implements
+=======
+/*public class SystemInfo extends Activity implements
+>>>>>>> ginger
 		ActionBar.TabListener {
 
 	private Integer gpu2d;
@@ -326,7 +336,7 @@ public class SystemInfo extends SherlockFragmentActivity implements
 	 * The serialization (saved instance state) Bundle key representing the
 	 * current tab position.
 	 */
-	private List<String> tabTitles = new ArrayList<String>();
+	/*private List<String> tabTitles = new ArrayList<String>();
 	ActionBar actionBar;
 
 	@Override
@@ -373,6 +383,10 @@ public class SystemInfo extends SherlockFragmentActivity implements
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
+<<<<<<< HEAD
+=======
+		
+>>>>>>> ginger
 		
 	}
 
@@ -407,20 +421,20 @@ public class SystemInfo extends SherlockFragmentActivity implements
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-	}
+	}*/
 
 	/**
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.
 	 */
 	
-	@SuppressLint("ValidFragment")
-	public class DummySectionFragment extends Fragment {
+	/*@SuppressLint("ValidFragment")
+	public class DummySectionFragment extends Fragment {*/
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
+		/*public static final String ARG_SECTION_NUMBER = "section_number";
 
 		
 		public DummySectionFragment() {
@@ -1119,4 +1133,4 @@ public class SystemInfo extends SherlockFragmentActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-}
+}*/

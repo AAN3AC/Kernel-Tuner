@@ -18,19 +18,18 @@
 */
 package rs.pedjaapps.KernelTuner.shortcuts;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import rs.pedjaapps.KernelTuner.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
-import java.util.ArrayList;
-import java.util.List;
-import rs.pedjaapps.KernelTuner.R;
 
 public class Shortcuts extends Activity
 {
@@ -152,6 +151,15 @@ ListView shortcutListView;
                                         
                                 } 
                         });
+                Button done = (Button)findViewById(R.id.done);
+                done.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						finish();
+						
+					}
+				});
         }
         
         private List<ShortcutEntry> getShortcutEntries()
@@ -163,24 +171,5 @@ ListView shortcutListView;
                 return entries;
         }
         
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-                MenuInflater inflater = getMenuInflater();
-                inflater.inflate(R.menu.shortcuts_options_menu, menu);
-                return super.onCreateOptionsMenu(menu);
-        }
-        @Override
-        public boolean onPrepareOptionsMenu (Menu menu) {
-
-                return true;
-        }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-                if (item.getItemId() == R.id.done)
-                {
-                        finish();
-                }
-                return super.onOptionsItemSelected(item);
-                }
+        
 }

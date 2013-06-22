@@ -27,9 +27,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -52,6 +55,7 @@ import java.util.List;
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import rs.pedjaapps.KernelTuner.tools.Tools;
+import rs.pedjaapps.KernelTuner.ui.MiscTweaks.Listener;
 
 public class Mpdecision extends SherlockActivity
 {
@@ -85,7 +89,7 @@ public class Mpdecision extends SherlockActivity
 	private int scroffNew;
 	private String scroff_singleNew;
 	
-	private Switch mp_switch;
+	private CheckBox mp_switch;
 	private Spinner idleSpinner;
 	private Spinner scroffSpinner;
 
@@ -158,13 +162,16 @@ public class Mpdecision extends SherlockActivity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> ginger
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.mpdecision);
 		
 		
-		mp_switch = (Switch)findViewById(R.id.mp_switch);
+		mp_switch = (CheckBox)findViewById(R.id.mp_switch);
 		idleSpinner =(Spinner)findViewById(R.id.bg);
 		scroffSpinner =(Spinner)findViewById(R.id.spinner2);
 		freqEntries = IOHelper.frequencies();
@@ -175,8 +182,11 @@ public class Mpdecision extends SherlockActivity
 			freqNames.add(f.getFreqName());
 		}
 		
+<<<<<<< HEAD
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> ginger
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true)
 		{AdView adView = (AdView)findViewById(R.id.ad);
@@ -351,10 +361,13 @@ public class Mpdecision extends SherlockActivity
 		thrdownloadnew = thrdownloadtext.getText().toString();
 		thrdownmsnew = thrdownmstext.getText().toString();
 
-
+		((Button)findViewById(R.id.apply)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.cancel)).setOnClickListener(new Listener(1));
+	
 
 	}
 
+<<<<<<< HEAD
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -381,6 +394,26 @@ public class Mpdecision extends SherlockActivity
 	            
 	    }
 	    return super.onOptionsItemSelected(item);
+=======
+	class Listener implements OnClickListener{
+
+		int code;
+		public Listener(int code){
+			this.code = code;
+		}
+		@Override
+		public void onClick(View arg0) {
+			switch(code){
+			case 0:
+				apply();
+				return;
+			case 1:
+				finish();
+				return;
+			}
+		}
+		
+>>>>>>> ginger
 	}
 	
 	private final void apply(){

@@ -24,7 +24,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -58,7 +57,6 @@ import org.apache.commons.io.FileUtils;
 import rs.pedjaapps.KernelTuner.Constants;
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
-import rs.pedjaapps.KernelTuner.tools.Tools;
 
 public class MiscTweaks extends SherlockActivity {
 
@@ -102,12 +100,12 @@ public class MiscTweaks extends SherlockActivity {
 	private ImageView fchargeHeadImage;
 	private TextView fchargeHead;
 	private LinearLayout fchargeLayout;
-	private Switch fchargeSwitch;
+	private CheckBox fchargeSwitch;
 
 	private ImageView vsyncHeadImage;
 	private TextView vsyncHead;
 	private LinearLayout vsyncLayout;
-	private Switch vsyncSwitch;
+	private CheckBox vsyncSwitch;
 
 	private ImageView nltHeadImage;
 	private TextView nltHead;
@@ -127,7 +125,7 @@ public class MiscTweaks extends SherlockActivity {
 	private ImageView otgHeadImage;
 	private TextView otgHead;
 	private LinearLayout otgLayout;
-	private Switch otgSwitch;
+	private CheckBox otgSwitch;
 	private ProgressDialog pd;
 	private String otg;
     
@@ -442,7 +440,10 @@ public class MiscTweaks extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
+<<<<<<< HEAD
 
+=======
+>>>>>>> ginger
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.misc_tweaks);
 
@@ -466,12 +467,12 @@ public class MiscTweaks extends SherlockActivity {
 		fchargeLayout = (LinearLayout) findViewById(R.id.fcharge_layout);
 		fchargeHead = (TextView) findViewById(R.id.fastcharge_head);
 		fchargeHeadImage = (ImageView) findViewById(R.id.fastcharge_head_image);
-		fchargeSwitch = (Switch) findViewById(R.id.fcharge_switch);
+		fchargeSwitch = (CheckBox) findViewById(R.id.fcharge_switch);
 
 		vsyncLayout = (LinearLayout) findViewById(R.id.vsync_layout);
 		vsyncHead = (TextView) findViewById(R.id.vsync_head);
 		vsyncHeadImage = (ImageView) findViewById(R.id.vsync_head_image);
-		vsyncSwitch = (Switch) findViewById(R.id.vsync_switch);
+		vsyncSwitch = (CheckBox) findViewById(R.id.vsync_switch);
 
 		nltLayout = (LinearLayout) findViewById(R.id.nlt_layout);
 		nltHead = (TextView) findViewById(R.id.nlt_head);
@@ -490,10 +491,13 @@ public class MiscTweaks extends SherlockActivity {
 		otgHeadImage = (ImageView) findViewById(R.id.otg_head_image);
 		otgHead = (TextView) findViewById(R.id.otg_head);
 		otgLayout = (LinearLayout) findViewById(R.id.otg_layout);
-		otgSwitch = (Switch) findViewById(R.id.otg_switch);
+		otgSwitch = (CheckBox) findViewById(R.id.otg_switch);
 
+<<<<<<< HEAD
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> ginger
 
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true) {
@@ -502,9 +506,30 @@ public class MiscTweaks extends SherlockActivity {
 		}
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		
+		((Button)findViewById(R.id.apply)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.cancel)).setOnClickListener(new Listener(1));
 	}
 
+	class Listener implements OnClickListener{
+
+		int code;
+		public Listener(int code){
+			this.code = code;
+		}
+		@Override
+		public void onClick(View arg0) {
+			switch(code){
+			case 0:
+				apply();
+				return;
+			case 1:
+				finish();
+				return;
+			}
+		}
+		
+	}
+	
 	private void setUI(){
 		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
 		mSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -556,7 +581,7 @@ public class MiscTweaks extends SherlockActivity {
 			}
 		});
 
-		final Switch fastchargechbx = (Switch) findViewById(R.id.fcharge_switch);
+		final CheckBox fastchargechbx = (CheckBox) findViewById(R.id.fcharge_switch);
 		fastchargechbx
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -580,7 +605,7 @@ public class MiscTweaks extends SherlockActivity {
 					}
 				});
 
-		final Switch vsynchbx = (Switch) findViewById(R.id.vsync_switch);
+		final CheckBox vsynchbx = (CheckBox) findViewById(R.id.vsync_switch);
 		vsynchbx.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -1096,6 +1121,7 @@ public class MiscTweaks extends SherlockActivity {
 
 	}
 
+<<<<<<< HEAD
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
@@ -1123,6 +1149,8 @@ public class MiscTweaks extends SherlockActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+=======
+>>>>>>> ginger
 	private final void apply() {
 		EditText sd = (EditText) findViewById(R.id.editText1);
 		sdcache = (int)Long.parseLong(sd.getText().toString());

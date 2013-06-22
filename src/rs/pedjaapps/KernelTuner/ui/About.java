@@ -23,12 +23,10 @@ import android.content.*;
 import android.content.pm.*;
 import android.net.*;
 import android.os.*;
-import android.preference.*;
 import android.text.method.*;
 import android.view.*;
 import android.widget.*;
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.tools.Tools;
 
 
 

@@ -47,7 +47,7 @@ public class SDScannerActivityList extends SherlockActivity
 {
 	private ProgressDialog pd;
 	private List<SDScannerEntry> entries = new ArrayList<SDScannerEntry>();
-	  int labelColor;
+	  int labelColor = Color.WHITE;
 	  String depth;
 	  String numberOfItems;
 	  String scannType;
@@ -70,12 +70,19 @@ public class SDScannerActivityList extends SherlockActivity
 	{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		
+<<<<<<< HEAD
 		labelColor = Color.WHITE;
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.sd_analyzer_list);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+		
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.sd_analyzer_list);
+>>>>>>> ginger
 		
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true)
@@ -250,20 +257,6 @@ public class SDScannerActivityList extends SherlockActivity
 	   return ob2.getSize() - ob1.getSize() ;
 	  }
 	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
-	}
+
 	
 }

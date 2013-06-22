@@ -18,19 +18,39 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.channels.FileChannel;
 
+<<<<<<< HEAD
+=======
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
+
+import rs.pedjaapps.KernelTuner.R;
+import android.app.Activity;
+>>>>>>> ginger
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.*;
 
 import java.nio.channels.FileChannel;
@@ -49,6 +69,10 @@ import com.actionbarsherlock.view.MenuItem;
 import rs.pedjaapps.KernelTuner.ui.BackupRestore;
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.tools.Tools;
+=======
+import android.widget.Button;
+import android.widget.Toast;
+>>>>>>> ginger
 
 public class BackupRestore extends SherlockActivity
  {
@@ -166,8 +190,11 @@ public class BackupRestore extends SherlockActivity
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.backup_restore);
+<<<<<<< HEAD
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> ginger
 		Button backup = (Button) findViewById(R.id.backup);
 		Button restore = (Button) findViewById(R.id.restore);
 
@@ -266,21 +293,6 @@ public class BackupRestore extends SherlockActivity
 		    //return false;
 		  }
 		}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
-	}
 	
 	public void restoreDb(Context context) {
 		  final File prefsFile = new File(context.getFilesDir(), "../databases/KTDatabase.db");

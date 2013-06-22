@@ -12,9 +12,7 @@
     android:layout_marginRight="16dp"
     android:baselineAligned="false"
 	android:layout_weight="1"
-    android:divider="?android:attr/dividerHorizontal"
-    android:orientation="horizontal"
-    android:showDividers="middle" >
+    android:orientation="horizontal" >
 
     <!--
     This layout is a two-pane layout for the processes

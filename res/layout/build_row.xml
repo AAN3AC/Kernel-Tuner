@@ -30,7 +30,7 @@
         android:textColor="#458B00"
         android:textSize="20sp"
 		android:singleLine="true"
-		android:gravity="end"
+		android:gravity="right"
 		/>
 
 </LinearLayout>

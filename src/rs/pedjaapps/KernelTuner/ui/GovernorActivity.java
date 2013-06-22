@@ -18,9 +18,12 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
+<<<<<<< HEAD
+=======
+import android.app.Activity;
+>>>>>>> ginger
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -44,7 +47,6 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import rs.pedjaapps.KernelTuner.ui.KernelTuner;
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.entry.GovEntry;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
@@ -73,9 +75,12 @@ public class GovernorActivity extends SherlockActivity
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.governor_settings);
+<<<<<<< HEAD
 		
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> ginger
 
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true)
@@ -236,20 +241,5 @@ public class GovernorActivity extends SherlockActivity
 
 
 		return entries;
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(c, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
 	}
 }

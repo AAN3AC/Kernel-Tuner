@@ -21,6 +21,10 @@ package rs.pedjaapps.KernelTuner.ui;
 import android.app.*;
 import android.content.*;
 import android.os.*;
+<<<<<<< HEAD
+=======
+import android.view.*;
+>>>>>>> ginger
 import android.view.ContextMenu.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
@@ -85,7 +89,7 @@ public class Profiles extends SherlockActivity
 
 				DataOutputStream localDataOutputStream = new DataOutputStream(localProcess.getOutputStream());
 				
-				if (IOHelper.cpu1Online() == true)
+				if (IOHelper.cpu1Exists() == true)
 						{
 							localDataOutputStream.writeBytes("echo 0 > /sys/kernel/msm_mpdecision/conf/enabled\n");
 							localDataOutputStream.writeBytes("chmod 666 /sys/devices/system/cpu/cpu1/online\n");
@@ -93,14 +97,14 @@ public class Profiles extends SherlockActivity
 							localDataOutputStream.writeBytes("chmod 444 /sys/devices/system/cpu/cpu1/online\n");
 							localDataOutputStream.writeBytes("chown system /sys/devices/system/cpu/cpu1/online\n");
 						}
-						if (IOHelper.cpu2Online() == true)
+						if (IOHelper.cpu2Exists() == true)
 						{
 							localDataOutputStream.writeBytes("chmod 666 /sys/devices/system/cpu/cpu2/online\n");
 							localDataOutputStream.writeBytes("echo 1 > /sys/devices/system/cpu/cpu2/online\n");
 							localDataOutputStream.writeBytes("chmod 444 /sys/devices/system/cpu/cpu2/online\n");
 							localDataOutputStream.writeBytes("chown system /sys/devices/system/cpu/cpu2/online\n");
 						}
-						if (IOHelper.cpu3Online() == true)
+						if (IOHelper.cpu3Exists() == true)
 						{
 							localDataOutputStream.writeBytes("chmod 666 /sys/devices/system/cpu/cpu3/online\n");
 							localDataOutputStream.writeBytes("echo 1 > /sys/devices/system/cpu/cpu3/online\n");
@@ -126,17 +130,17 @@ public class Profiles extends SherlockActivity
 			_cpu0min = IOHelper.cpu0MinFreq();
 			_cpu0max = IOHelper.cpu0MaxFreq();
 			_cpu0gov = IOHelper.cpu0CurGov();
-			if(IOHelper.cpu1Online()){
+			if(IOHelper.cpu1Exists()){
 			_cpu1min = IOHelper.cpu1MinFreq();
 			_cpu1max = IOHelper.cpu1MaxFreq();
 			_cpu1gov = IOHelper.cpu1CurGov();
 			}
-			if(IOHelper.cpu2Online()){
+			if(IOHelper.cpu2Exists()){
 			_cpu2min = IOHelper.cpu2MinFreq();
 			_cpu2max = IOHelper.cpu2MaxFreq();
 			_cpu2gov = IOHelper.cpu2CurGov();
 			}
-			if(IOHelper.cpu3Online()){
+			if(IOHelper.cpu3Exists()){
 			_cpu3min = IOHelper.cpu3MinFreq();
 			_cpu3max = IOHelper.cpu3MaxFreq();
 			_cpu3gov = IOHelper.cpu3CurGov();
@@ -158,20 +162,20 @@ try{
 
 	DataOutputStream localDataOutputStream = new DataOutputStream(localProcess.getOutputStream());
 	
-			if (IOHelper.cpu1Online() == true)
+			if (IOHelper.cpu1Exists() == true)
 			{
 				localDataOutputStream.writeBytes("echo 1 > /sys/kernel/msm_mpdecision/conf/enabled\n");
 				localDataOutputStream.writeBytes("chmod 777 /sys/devices/system/cpu/cpu1/online\n");
 				localDataOutputStream.writeBytes("echo 0 > /sys/devices/system/cpu/cpu1/online\n");
 				localDataOutputStream.writeBytes("chown system /sys/devices/system/cpu/cpu1/online\n");
 			}
-			if (IOHelper.cpu2Online() == true)
+			if (IOHelper.cpu2Exists() == true)
 			{
 				localDataOutputStream.writeBytes("chmod 777 /sys/devices/system/cpu/cpu2/online\n");
 				localDataOutputStream.writeBytes("echo 0 > /sys/devices/system/cpu/cpu2/online\n");
 				localDataOutputStream.writeBytes("chown system /sys/devices/system/cpu/cpu2/online\n");
 			}
-			if (IOHelper.cpu3Online() == true)
+			if (IOHelper.cpu3Exists() == true)
 			{
 				localDataOutputStream.writeBytes("chmod 777 /sys/devices/system/cpu/cpu3/online\n");
 				localDataOutputStream.writeBytes("echo 0 > /sys/devices/system/cpu/cpu3/online\n");
@@ -255,9 +259,13 @@ catch (InterruptedException e1)
 		setContentView(R.layout.profiles);
 		
 		ImageView add = (ImageView)findViewById(R.id.add);
+<<<<<<< HEAD
 		add.setImageResource(R.drawable.add_light);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+		add.setImageResource( R.drawable.add_dark);
+>>>>>>> ginger
 		
 		db = new DatabaseHandler(this);
 		profiles = db.getAllProfiles();
@@ -624,6 +632,7 @@ catch (InterruptedException e1)
 		//inflater.inflate(R.menu.profiles_options_menu, menu);
 		
 		menu.add(1, 1, 1, "Add")
+<<<<<<< HEAD
         .setIcon(R.drawable.add_light)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		
@@ -634,6 +643,15 @@ catch (InterruptedException e1)
 		menu.add(3, 3, 3, "Save")
         .setIcon(R.drawable.apply_light)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+=======
+        .setIcon(R.drawable.add_dark);
+		
+		menu.add(2, 2, 2, "Delete All")
+        .setIcon(R.drawable.delete_dark);
+		
+		menu.add(3, 3, 3, "Save")
+        .setIcon(R.drawable.apply_dark);
+>>>>>>> ginger
 		
 		return super.onCreateOptionsMenu(menu);
 }
@@ -708,7 +726,11 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 		
 
+<<<<<<< HEAD
 		builder2.setIcon(R.drawable.save_light);
+=======
+		builder2.setIcon(R.drawable.save_dark);
+>>>>>>> ginger
 		final EditText ed2 = new EditText(Profiles.this);
 		ed2.setHint("Profile Name");
 		builder2.setPositiveButton(getResources().getString(R.string.save), new DialogInterface.OnClickListener() {
@@ -740,13 +762,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 		alert2.show();	
 }
-	if(item.getItemId()==android.R.id.home || item.getItemId()==0){
-        // app icon in action bar clicked; go home
-        Intent intent = new Intent(this, KernelTuner.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);  
-		return true;
-	}
 return super.onOptionsItemSelected(item);
 
 }

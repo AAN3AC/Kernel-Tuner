@@ -18,6 +18,7 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
+<<<<<<< HEAD
 import android.app.*;
 import android.content.*;
 import android.os.*;
@@ -30,16 +31,48 @@ import android.widget.SeekBar.*;
 import java.util.*;
 import rs.pedjaapps.KernelTuner.*;
 import rs.pedjaapps.KernelTuner.helpers.*;
+=======
+import java.util.List;
+>>>>>>> ginger
 
+import rs.pedjaapps.KernelTuner.R;
+import rs.pedjaapps.KernelTuner.helpers.IOHelper;
+import rs.pedjaapps.KernelTuner.tools.Tools;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.InputType;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.View.OnClickListener;
+<<<<<<< HEAD
+=======
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+>>>>>>> ginger
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.execution.CommandCapture;
 
+<<<<<<< HEAD
 import rs.pedjaapps.KernelTuner.tools.Tools;
 
 public class OOM extends SherlockActivity {
+=======
+public class OOM extends Activity {
+>>>>>>> ginger
 
 	private SeekBar foregroundSeek;
 	private SeekBar visibleSeek;
@@ -66,6 +99,11 @@ public class OOM extends SherlockActivity {
 	boolean isLight;
 	public void onCreate(Bundle savedInstanceState) {
 		
+<<<<<<< HEAD
+=======
+		setTheme(R.style.Theme_Translucent_NoTitleBar);
+		
+>>>>>>> ginger
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.oom);
 		oom = IOHelper.oom();

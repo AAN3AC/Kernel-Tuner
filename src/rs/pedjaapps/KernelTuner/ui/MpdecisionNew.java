@@ -22,7 +22,12 @@ import android.app.ProgressDialog;
 import android.content.*;
 import android.os.*;
 import android.preference.*;
+<<<<<<< HEAD
 import android.view.WindowManager;
+=======
+import android.view.*;
+import android.view.View.OnClickListener;
+>>>>>>> ginger
 import android.widget.*;
 import android.widget.AdapterView.*;
 import android.view.View;
@@ -71,7 +76,7 @@ public class MpdecisionNew extends SherlockActivity
 	private int scroffNew;
 	private String scroff_singleNew;
 	
-	private Switch mp_switch;
+	private CheckBox mp_switch;
 	private Spinner idleSpinner;
 	private Spinner scroffSpinner;
 
@@ -188,7 +193,7 @@ public class MpdecisionNew extends SherlockActivity
 		setContentView(R.layout.mpdecision_new);
 		
 		
-		mp_switch = (Switch)findViewById(R.id.mp_switch);
+		mp_switch = (CheckBox)findViewById(R.id.mp_switch);
 		idleSpinner =(Spinner)findViewById(R.id.bg);
 		scroffSpinner =(Spinner)findViewById(R.id.spinner2);
 		freqEntries = IOHelper.frequencies();
@@ -199,8 +204,11 @@ public class MpdecisionNew extends SherlockActivity
 			freqNames.add(f.getFreqName());
 		}
 		
+<<<<<<< HEAD
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> ginger
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true)
 		{AdView adView = (AdView)findViewById(R.id.ad);
@@ -224,8 +232,31 @@ public class MpdecisionNew extends SherlockActivity
 			thrTxt[i] = (EditText)findViewById(thrIds[i]);
 		}
 		readMpdec();
+		((Button)findViewById(R.id.apply)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.cancel)).setOnClickListener(new Listener(1));
+	
 	}
 
+	class Listener implements OnClickListener{
+
+		int code;
+		public Listener(int code){
+			this.code = code;
+		}
+		@Override
+		public void onClick(View arg0) {
+			switch(code){
+			case 0:
+				apply();
+				return;
+			case 1:
+				finish();
+				return;
+			}
+		}
+		
+	}
+	
 	@Override
 	public void onPause()
 	{
@@ -441,6 +472,7 @@ public class MpdecisionNew extends SherlockActivity
 		setCheckBoxes();
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
@@ -468,6 +500,8 @@ public class MpdecisionNew extends SherlockActivity
 	    return super.onOptionsItemSelected(item);
 	}
 	
+=======
+>>>>>>> ginger
 	private final void apply(){
 		MpdecisionNew.this.pd = ProgressDialog.show(MpdecisionNew.this, null, getResources().getString(R.string.applying_settings), true, true);
 		new apply().execute();

@@ -17,18 +17,28 @@
  * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
  */
 package rs.pedjaapps.KernelTuner.tools;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Environment;
+import android.os.StatFs;
+import android.preference.PreferenceManager;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+<<<<<<< HEAD
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.StatFs;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+=======
+import rs.pedjaapps.KernelTuner.Constants;
+>>>>>>> ginger
 import rs.pedjaapps.KernelTuner.entry.SysCtlDatabaseEntry;
 import rs.pedjaapps.KernelTuner.helpers.DatabaseHandler;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
@@ -265,8 +275,11 @@ public class Tools
 		timeString = builder.toString();
 		return timeString;
 	}
+<<<<<<< HEAD
 
 	
+=======
+>>>>>>> ginger
 	
 	public static String getAbi(){
 		String abi = android.os.Build.CPU_ABI;
@@ -362,6 +375,7 @@ public class Tools
 		String idle_freq = sharedPrefs.getString("idle_freq", "");
 		String scroff = sharedPrefs.getString("scroff", "");
 		String scroff_single = sharedPrefs.getString("scroff_single", "");
+		String voltage_ = sharedPrefs.getString("voltage_", "");
 		String[] thr = new String[6];
 		String[] tim = new String[6];
 		thr[0] = sharedPrefs.getString("thr0", "");
@@ -880,6 +894,7 @@ public class Tools
 
 		StringBuilder voltagebuilder = new StringBuilder();
 		voltagebuilder.append("#!/system/bin/sh \n");
+		if (new File(Constants.VOLTAGE_PATH).exists()){
 		for (String s : voltages) {
 			String temp = sharedPrefs.getString("voltage_" + s, "");
 			if (!temp.equals("")) {
@@ -889,6 +904,12 @@ public class Tools
 								+ temp
 								+ "\""
 								+ " > /sys/devices/system/cpu/cpufreq/vdd_table/vdd_levels\n");
+			}
+		}
+		}
+		else if (new File(Constants.VOLTAGE_PATH_TEGRA_3).exists()){
+			if(!voltage_.equals("")){
+			voltagebuilder.append("echo " + voltage_ + " > /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table");
 			}
 		}
 		String voltage = voltagebuilder.toString();
@@ -903,7 +924,7 @@ public class Tools
 		try {
 
 			FileOutputStream fOut = c.openFileOutput("99ktsysctl",
-												   c.MODE_PRIVATE);
+												   Context.MODE_PRIVATE);
 			OutputStreamWriter osw = new OutputStreamWriter(fOut);
 			osw.write(sys);
 			osw.flush();
@@ -914,7 +935,7 @@ public class Tools
 		try {
 
 			FileOutputStream fOut = c.openFileOutput("99ktcputweaks",
-					c.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			OutputStreamWriter osw = new OutputStreamWriter(fOut);
 			osw.write(cpu);
 			osw.flush();
@@ -925,7 +946,7 @@ public class Tools
 		try {
 
 			FileOutputStream fOut = c.openFileOutput("99ktgputweaks",
-					c.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			OutputStreamWriter osw = new OutputStreamWriter(fOut);
 			osw.write(gpu);
 			osw.flush();
@@ -936,7 +957,7 @@ public class Tools
 		try {
 
 			FileOutputStream fOut = c.openFileOutput("99ktmisctweaks",
-					c.MODE_PRIVATE);
+					Context.MODE_PRIVATE);
 			OutputStreamWriter osw = new OutputStreamWriter(fOut);
 			osw.write(misc);
 			osw.flush();
@@ -947,7 +968,7 @@ public class Tools
 
 		try {
 
-			FileOutputStream fOut = c.openFileOutput("99ktvoltage", c.MODE_PRIVATE);
+			FileOutputStream fOut = c.openFileOutput("99ktvoltage", Context.MODE_PRIVATE);
 			OutputStreamWriter osw = new OutputStreamWriter(fOut);
 			osw.write(voltage);
 			osw.flush();

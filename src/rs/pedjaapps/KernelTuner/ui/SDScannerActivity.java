@@ -70,7 +70,7 @@ public class SDScannerActivity extends SherlockActivity
 		  Color.CYAN,
 		  Color.MAGENTA,
 		  Color.GRAY};
-	  int labelColor;
+	  int labelColor = Color.WHITE;
 
 	  private CategorySeries mSeries = new CategorySeries("");
 
@@ -106,12 +106,19 @@ public class SDScannerActivity extends SherlockActivity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+<<<<<<< HEAD
 		labelColor = Color.WHITE;
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.sd_scanner);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+=======
+		
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.sd_scanner);
+>>>>>>> ginger
 		mRenderer.setApplyBackgroundColor(true);
 	    mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
 	    mRenderer.setChartTitleTextSize(20);
@@ -271,20 +278,5 @@ public class SDScannerActivity extends SherlockActivity
 	  }
 	}
 	
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
-	}
 	
 }
