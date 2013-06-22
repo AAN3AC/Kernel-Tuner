@@ -106,8 +106,6 @@ public class KernelTuner extends Activity implements Runnable {
 	private SharedPreferences.Editor editor;
 
 	private boolean first;
-	private boolean isLight;
-	private String theme;
 	private Button gpu;
 	private Button cpu;
 	private Button tis;
@@ -140,13 +138,12 @@ public class KernelTuner extends Activity implements Runnable {
 		List<IOHelper.VoltageList> voltageFreqs = IOHelper.voltages();
 		preferences = PreferenceManager.getDefaultSharedPreferences(c);
 		editor = preferences.edit();
-		theme = preferences.getString("theme", "light");
 		minimal = preferences.getBoolean("main_style", false);
 		if (minimal) {
-			setTheme(Tools.getPreferedThemeTranslucent(theme));
+			setTheme(R.style.Theme_Translucent_NoTitleBar);
 			setContentView(R.layout.activity_main_popup);
 		} else {
-			setTheme(Tools.getPreferedTheme(theme));
+			setTheme(android.R.style.Theme_Black);
 			setContentView(R.layout.activity_main);
 		}
 		super.onCreate(savedInstanceState);
@@ -191,10 +188,6 @@ public class KernelTuner extends Activity implements Runnable {
 			tempPref = preferences.getString("temp", "celsius");
 			batteryTemp = (TextView) findViewById(R.id.txtBatteryTemp);
 			cpuTempLayout = (LinearLayout) findViewById(R.id.temp_cpu_layout);
-
-			ActionBar actionBar = getActionBar();
-			actionBar.setSubtitle("Various kernel and system tuning");
-			actionBar.setHomeButtonEnabled(false);
 
 			/**
 			 * Read all available frequency steps
@@ -953,24 +946,11 @@ public class KernelTuner extends Activity implements Runnable {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		if (theme.equals("light")) {
-			isLight = true;
-		} else if (theme.equals("dark")) {
-			isLight = false;
-		} else if (theme.equals("light_dark_action_bar")) {
-			isLight = false;
-		}
+		
 		menu.add(1, 1, 1, "Settings")
-				.setIcon(
-						isLight ? R.drawable.settings_light
-								: R.drawable.settings_dark)
-				.setShowAsAction(
-						MenuItem.SHOW_AS_ACTION_ALWAYS
-								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		menu.add(2, 2, 2, "Compatibility Check").setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_NEVER);
-		menu.add(3, 3, 3, "Swap")
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+				.setIcon(R.drawable.settings_dark);
+		menu.add(2, 2, 2, "Compatibility Check");
+		menu.add(3, 3, 3, "Swap");
 		return true;
 	}
 

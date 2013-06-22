@@ -28,7 +28,6 @@ import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import rs.pedjaapps.KernelTuner.tools.ChangeGovernor;
 import rs.pedjaapps.KernelTuner.tools.FrequencyChanger;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -50,7 +49,6 @@ import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.execution.CommandCapture;
 
 import android.content.Context;
-import rs.pedjaapps.KernelTuner.tools.Tools;
 import android.view.Menu;
 import rs.pedjaapps.KernelTuner.linpack.Tester;
 
@@ -159,17 +157,12 @@ public class CPUActivity extends Activity
 		mHandler = new Handler();
 		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(c);
 		
-		final String theme = sharedPrefs.getString("theme", "light");
-		
-		setTheme(Tools.getPreferedTheme(theme));
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.cpu_tweaks);
 		mhz = getResources().getString(R.string.mhz);
 		/**
 		 * Show Progress Dialog and execute ToggleCpus class*/
-		final ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		pd = ProgressDialog.show(c, null, 
 				  getResources().getString(R.string.enabling_cpus), true, false);
 		new ToggleCPUs().execute(new Boolean[] {true});
@@ -1311,10 +1304,7 @@ startCpuLoadThread();
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		menu.add(1, 1, 1, "Linpack")
-			.setShowAsAction(
-			MenuItem.SHOW_AS_ACTION_ALWAYS
-			| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		menu.add(1, 1, 1, "Linpack");
 		
 		return true;
 	}
@@ -1322,16 +1312,8 @@ startCpuLoadThread();
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(c, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
+	        
 			case 1:
-			/*LinpackLoop linpack = new LinpackLoop();
-			String result = linpack.run_benchmark();
-			Toast.makeText(this, result, Toast.LENGTH_LONG).show();*/
 			startActivity(new Intent(this, Tester.class));
 			    return true;
 	        

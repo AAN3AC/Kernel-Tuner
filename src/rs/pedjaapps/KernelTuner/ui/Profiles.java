@@ -21,7 +21,6 @@ package rs.pedjaapps.KernelTuner.ui;
 import android.app.*;
 import android.content.*;
 import android.os.*;
-import android.preference.*;
 import android.view.*;
 import android.view.ContextMenu.*;
 import android.widget.*;
@@ -245,18 +244,12 @@ catch (InterruptedException e1)
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		
-		theme = preferences.getString("theme", "light");
-		
-		setTheme(Tools.getPreferedTheme(theme));
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.profiles);
 		
 		ImageView add = (ImageView)findViewById(R.id.add);
-		add.setImageResource(isLight ? R.drawable.add_light : R.drawable.add_dark);
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		add.setImageResource( R.drawable.add_dark);
 		
 		db = new DatabaseHandler(this);
 		profiles = db.getAllProfiles();
@@ -631,16 +624,13 @@ catch (InterruptedException e1)
 				isLight = false;
 			}
 		menu.add(1, 1, 1, "Add")
-        .setIcon(isLight ? R.drawable.add_light : R.drawable.add_dark)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        .setIcon(R.drawable.add_dark);
 		
 		menu.add(2, 2, 2, "Delete All")
-        .setIcon(isLight ? R.drawable.delete_light : R.drawable.delete_dark)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        .setIcon(R.drawable.delete_dark);
 		
 		menu.add(3, 3, 3, "Save")
-        .setIcon(isLight ? R.drawable.apply_light : R.drawable.apply_dark)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        .setIcon(R.drawable.apply_dark);
 		
 		return super.onCreateOptionsMenu(menu);
 }
@@ -721,17 +711,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 		builder2.setTitle(getResources().getString(R.string.save_current_settings));
 
-		if(theme.equals("light")){
-			isLight = true;
-			}
-			else if(theme.equals("dark")){
-				isLight = false;
-			}
-			else if(theme.equals("light_dark_action_bar")){
-				isLight = true;
-			}
+		
 
-		builder2.setIcon(isLight ? R.drawable.save_light : R.drawable.save_dark);
+		builder2.setIcon(R.drawable.save_dark);
 		final EditText ed2 = new EditText(Profiles.this);
 		ed2.setHint("Profile Name");
 		builder2.setPositiveButton(getResources().getString(R.string.save), new DialogInterface.OnClickListener() {
@@ -763,13 +745,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 		alert2.show();	
 }
-	if(item.getItemId()==android.R.id.home || item.getItemId()==0){
-        // app icon in action bar clicked; go home
-        Intent intent = new Intent(this, KernelTuner.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);  
-		return true;
-	}
 return super.onOptionsItemSelected(item);
 
 }

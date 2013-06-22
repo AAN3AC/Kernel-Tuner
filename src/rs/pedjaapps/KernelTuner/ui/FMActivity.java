@@ -18,29 +18,26 @@
  */
 package rs.pedjaapps.KernelTuner.ui;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.entry.FMEntry;
 import rs.pedjaapps.KernelTuner.helpers.FMAdapter;
-import android.content.Context;
 import rs.pedjaapps.KernelTuner.tools.Tools;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.GridView;
 
 public class FMActivity extends Activity
 {
@@ -55,10 +52,6 @@ public class FMActivity extends Activity
 		c = this;
         super.onCreate(savedInstanceState);
        
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = prefs.getString("theme", "light");
-		setTheme(Tools.getPreferedTheme(theme));
-		 setContentView(R.layout.fm);
 		fListView = (GridView) findViewById(R.id.list);
 		
 		path = Environment.getExternalStorageDirectory().toString();
@@ -73,7 +66,7 @@ public class FMActivity extends Activity
 			fAdapter.add(entry);
 		}
 
-		getActionBar().setTitle(path);
+		setTitle(path);
 		fListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
 
@@ -91,13 +84,40 @@ public class FMActivity extends Activity
 						}
 					}
 					fAdapter.notifyDataSetChanged();
-					getActionBar().setTitle(path);
+					setTitle(path);
 				}
 
 			});
 
+		((Button)findViewById(R.id.select)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.cancel)).setOnClickListener(new Listener(1));
     }
 	
+	class Listener implements OnClickListener{
+
+    	int code;
+    	
+    	public Listener(int code){
+    		this.code = code;
+    	}
+    	
+		@Override
+		public void onClick(View v) {
+			switch(code){
+			case 0:
+				Intent i = new Intent();
+	        	i.putExtra("path", path);
+	        	setResult(RESULT_OK, i);
+	        	finish();
+				return;
+			case 1:
+				finish();
+				return;
+			}
+			
+		}
+    	
+    }
 	private List<FMEntry> ls(File path){
 		e = new ArrayList<FMEntry>();
 		
@@ -155,33 +175,8 @@ public class FMActivity extends Activity
 				fAdapter.add(entry);
 			}
 			fAdapter.notifyDataSetChanged();
-			getActionBar().setTitle(path);
+			setTitle(path);
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		
-		menu.add(0,0,0,getResources().getString(R.string.select)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add(0,1,1,getResources().getString(R.string.cancel)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		return super.onCreateOptionsMenu(menu);
-	
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case 0:
-	        	Intent i = new Intent();
-	        	i.putExtra("path", path);
-	        	setResult(RESULT_OK, i);
-	        	finish();
-	        	return true;
-	        case 1:
-	        	finish();
-	        	return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
-	}
 }

@@ -1,7 +1,14 @@
 package rs.pedjaapps.KernelTuner.fragments;
 
-import android.app.Fragment;
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+
+import rs.pedjaapps.KernelTuner.tools.Tools;
+import android.R;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +16,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import java.io.File;
-import org.apache.commons.io.FileUtils;
-import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.tools.Tools;
-import android.graphics.Color;
-import com.stericson.RootTools.execution.CommandCapture;
+
 import com.stericson.RootTools.RootTools;
+import com.stericson.RootTools.execution.CommandCapture;
 
 
 /**
@@ -68,9 +71,8 @@ public class TMDetailFragment extends Fragment
 				Log.e("", e.getMessage());
 			}
 		}
-		getActivity().getActionBar().setSubtitle("PID: "+TMListFragment.tmAdapter.getItem(getArguments().getInt(ARG_ITEM_ID)).getPid());
-		getActivity().getActionBar().setTitle(TMListFragment.tmAdapter.getItem(getArguments().getInt(ARG_ITEM_ID)).getName());
-		getActivity().getActionBar().setIcon(TMListFragment.tmAdapter.getItem(getArguments().getInt(ARG_ITEM_ID)).getIcon());
+		getActivity().setTitle(TMListFragment.tmAdapter.getItem(getArguments().getInt(ARG_ITEM_ID)).getName());
+		getActivity().setIcon(TMListFragment.tmAdapter.getItem(getArguments().getInt(ARG_ITEM_ID)).getIcon());
 	}
 
 	@Override

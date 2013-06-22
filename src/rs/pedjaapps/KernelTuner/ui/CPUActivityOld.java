@@ -21,12 +21,10 @@ package rs.pedjaapps.KernelTuner.ui;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -273,27 +271,7 @@ public class CPUActivityOld extends Activity
 		c = this;
 		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(c);
 		
-		final String theme = sharedPrefs.getString("theme", "light");
 		
-		if(theme.equals("light")){
-			setTheme(R.style.Theme_Sherlock_Light_Dialog_NoTitleBar);
-		}
-		else if(theme.equals("dark")){
-			setTheme(R.style.Theme_Sherlock_Dialog_NoTitleBar);
-			
-		}
-		else if(theme.equals("light_dark_action_bar")){
-			setTheme(R.style.Theme_Sherlock_Light_Dialog_NoTitleBar);
-			
-		}
-		else if (theme.equals("miui_dark")) 
-		{
-			setTheme(R.style.Theme_Sherlock_Dialog_NoTitleBar);
-		} 
-		else if (theme.equals("sense5")) 
-		{
-			setTheme(R.style.Theme_Sherlock_Dialog_NoTitleBar);
-		}
 		
 		super.onCreate(savedInstanceState);
 
@@ -633,21 +611,6 @@ public class CPUActivityOld extends Activity
 
 
 		}
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(c, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
 	}
 
 }

@@ -11,7 +11,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ly3"
+        android:layout_above="@+id/buttons"
         android:layout_alignParentTop="true" >
 
         <LinearLayout
@@ -304,7 +304,7 @@
                         android:text="@string/single_scroff_desc" />
                 </LinearLayout>
 
-                <Switch
+                <CheckBox
                     android:id="@+id/mp_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -880,7 +880,28 @@
             
         </LinearLayout>
     </ScrollView>
+<LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ly3"
+        android:orientation="horizontal" >
 
+        <Button
+            android:id="@+id/apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/apply" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/ly3"
         android:layout_width="match_parent"

@@ -18,7 +18,6 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -31,14 +30,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Switch;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
@@ -49,6 +50,7 @@ import java.util.List;
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import rs.pedjaapps.KernelTuner.tools.Tools;
+import rs.pedjaapps.KernelTuner.ui.MiscTweaks.Listener;
 
 public class Mpdecision extends Activity
 {
@@ -82,7 +84,7 @@ public class Mpdecision extends Activity
 	private int scroffNew;
 	private String scroff_singleNew;
 	
-	private Switch mp_switch;
+	private CheckBox mp_switch;
 	private Spinner idleSpinner;
 	private Spinner scroffSpinner;
 
@@ -155,16 +157,12 @@ public class Mpdecision extends Activity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
-		
-		String theme = preferences.getString("theme", "light");
-		
-		setTheme(Tools.getPreferedTheme(theme));
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.mpdecision);
 		
 		
-		mp_switch = (Switch)findViewById(R.id.mp_switch);
+		mp_switch = (CheckBox)findViewById(R.id.mp_switch);
 		idleSpinner =(Spinner)findViewById(R.id.bg);
 		scroffSpinner =(Spinner)findViewById(R.id.spinner2);
 		freqEntries = IOHelper.frequencies();
@@ -175,8 +173,6 @@ public class Mpdecision extends Activity
 			freqNames.add(f.getFreqName());
 		}
 		
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true)
 		{AdView adView = (AdView)findViewById(R.id.ad);
@@ -351,36 +347,30 @@ public class Mpdecision extends Activity
 		thrdownloadnew = thrdownloadtext.getText().toString();
 		thrdownmsnew = thrdownmstext.getText().toString();
 
-
+		((Button)findViewById(R.id.apply)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.cancel)).setOnClickListener(new Listener(1));
+	
 
 	}
 
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.misc_tweaks_options_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	           
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        case R.id.apply:
-	        	apply();
-	        	return true;
-	        case R.id.cancel:
-	        	finish();
-	        	return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
+	class Listener implements OnClickListener{
+
+		int code;
+		public Listener(int code){
+			this.code = code;
+		}
+		@Override
+		public void onClick(View arg0) {
+			switch(code){
+			case 0:
+				apply();
+				return;
+			case 1:
+				finish();
+				return;
+			}
+		}
+		
 	}
 	
 	private final void apply(){

@@ -27,17 +27,19 @@ import android.graphics.*;
 import android.hardware.*;
 import android.os.*;
 import android.preference.*;
+import android.test.suitebuilder.annotation.Suppress;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
 import java.io.*;
 import java.util.*;
+
+
 import rs.pedjaapps.KernelTuner.helpers.*;
 
-import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.tools.Tools;
 
-public class SystemInfo extends Activity implements
+/*public class SystemInfo extends Activity implements
 		ActionBar.TabListener {
 
 	private Integer gpu2d;
@@ -315,7 +317,7 @@ public class SystemInfo extends Activity implements
 	 * The serialization (saved instance state) Bundle key representing the
 	 * current tab position.
 	 */
-	private List<String> tabTitles = new ArrayList<String>();
+	/*private List<String> tabTitles = new ArrayList<String>();
 	ActionBar actionBar;
 
 	@Override
@@ -361,20 +363,12 @@ public class SystemInfo extends Activity implements
 
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
-		// Restore the previously serialized current tab position.
-		/*if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM))
-	{
-			getSupportActionBar().setSelectedNavigationItem(
-					savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
-				System.out.println("tab count restore"+getSupportActionBar().getNavigationItemCount());
-		}*/
+		
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
-		// Serialize the current tab position.
-		/*outState.putInt("tr", getSupportActionBar()
-				.getSelectedNavigationIndex());*/
+		
 		
 	}
 
@@ -409,20 +403,20 @@ public class SystemInfo extends Activity implements
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-	}
+	}*/
 
 	/**
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.
 	 */
 	
-	@SuppressLint("ValidFragment")
-	public class DummySectionFragment extends Fragment {
+	/*@SuppressLint("ValidFragment")
+	public class DummySectionFragment extends Fragment {*/
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
+		/*public static final String ARG_SECTION_NUMBER = "section_number";
 
 		
 		public DummySectionFragment() {
@@ -1131,4 +1125,4 @@ public class SystemInfo extends Activity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-}
+}*/

@@ -11,7 +11,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ly3"
+        android:layout_above="@+id/buttons"
         android:layout_alignParentTop="true" >
 
         <RelativeLayout
@@ -152,7 +152,7 @@
                         android:text="@string/toggle_fastcharge_mode" />
                 </LinearLayout>
 
-                <Switch
+                <CheckBox
                     android:id="@+id/fcharge_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
                         android:text="@string/toggle_vsync" />
                 </LinearLayout>
 
-                <Switch
+                <CheckBox
                     android:id="@+id/vsync_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -264,7 +264,7 @@
                         android:text="@string/enable_otg_support_with_standard_usb_cable" />
                 </LinearLayout>
 
-                <Switch
+                <CheckBox
                     android:id="@+id/otg_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -641,6 +641,29 @@
             ads:adSize="BANNER"
             ads:adUnitId="a15056d54ca9d71"
             ads:testDevices="TEST_EMULATOR, 3CE20BB714ED336822A2508B26BBC32B" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ly3"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/apply" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
+
     </LinearLayout>
 
 </RelativeLayout>

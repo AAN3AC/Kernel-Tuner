@@ -68,7 +68,7 @@ public class SDScannerActivity extends Activity
 		  Color.CYAN,
 		  Color.MAGENTA,
 		  Color.GRAY};
-	  int labelColor;
+	  int labelColor = Color.WHITE;
 
 	  private CategorySeries mSeries = new CategorySeries("");
 
@@ -105,48 +105,9 @@ public class SDScannerActivity extends Activity
 	{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		
-		String theme = preferences.getString("theme", "light");
-		
-		if (theme.equals("light")) 
-		{
-			setTheme(android.R.style.Theme_Holo_Light);
-			labelColor = Color.BLACK;
-		} 
-		else if (theme.equals("dark")) 
-		{
-			setTheme(android.R.style.Theme_Holo);
-			labelColor = Color.WHITE;
-		} 
-		else if (theme.equals("light_dark_action_bar")) 
-		{
-			setTheme(android.R.style.Theme_Holo_Light_DarkActionBar);
-			labelColor = Color.BLACK;
-		}
-		else if (theme.equals("miui_light")) 
-		{
-			setTheme(R.style.Theme_Miui_Light);
-			labelColor = Color.BLACK;
-		} 
-		else if (theme.equals("miui_dark")) 
-		{
-			setTheme(R.style.Theme_Miui_Dark);
-			labelColor = Color.WHITE;
-		} 
-		else if (theme.equals("sense5")) 
-		{
-			setTheme(R.style.Theme_Sense5);
-			labelColor = Color.WHITE;
-		}
-		else if (theme.equals("sense5_light")) 
-		{
-			setTheme(R.style.Theme_Light_Sense5);
-			labelColor = Color.BLACK;
-		}
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.sd_scanner);
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		mRenderer.setApplyBackgroundColor(true);
 	    mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
 	    mRenderer.setChartTitleTextSize(20);
@@ -306,20 +267,5 @@ public class SDScannerActivity extends Activity
 	  }
 	}
 	
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
-	}
 	
 }

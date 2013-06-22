@@ -23,6 +23,7 @@ import android.content.*;
 import android.os.*;
 import android.preference.*;
 import android.view.*;
+import android.view.View.OnClickListener;
 import android.widget.*;
 import android.widget.AdapterView.*;
 import android.widget.CompoundButton.*;
@@ -38,7 +39,6 @@ import org.apache.commons.io.FileUtils;
 
 import rs.pedjaapps.KernelTuner.R;
 import rs.pedjaapps.KernelTuner.Constants;
-import rs.pedjaapps.KernelTuner.tools.Tools;
 
 public class MpdecisionNew extends Activity
 {
@@ -63,7 +63,7 @@ public class MpdecisionNew extends Activity
 	private int scroffNew;
 	private String scroff_singleNew;
 	
-	private Switch mp_switch;
+	private CheckBox mp_switch;
 	private Spinner idleSpinner;
 	private Spinner scroffSpinner;
 
@@ -175,15 +175,12 @@ public class MpdecisionNew extends Activity
 	{
 		preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		
-		String theme = preferences.getString("theme", "light");
-		
-		setTheme(Tools.getPreferedTheme(theme));
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.mpdecision_new);
 		
 		
-		mp_switch = (Switch)findViewById(R.id.mp_switch);
+		mp_switch = (CheckBox)findViewById(R.id.mp_switch);
 		idleSpinner =(Spinner)findViewById(R.id.bg);
 		scroffSpinner =(Spinner)findViewById(R.id.spinner2);
 		freqEntries = IOHelper.frequencies();
@@ -194,8 +191,6 @@ public class MpdecisionNew extends Activity
 			freqNames.add(f.getFreqName());
 		}
 		
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
 		boolean ads = preferences.getBoolean("ads", true);
 		if (ads == true)
 		{AdView adView = (AdView)findViewById(R.id.ad);
@@ -219,8 +214,31 @@ public class MpdecisionNew extends Activity
 			thrTxt[i] = (EditText)findViewById(thrIds[i]);
 		}
 		readMpdec();
+		((Button)findViewById(R.id.apply)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.cancel)).setOnClickListener(new Listener(1));
+	
 	}
 
+	class Listener implements OnClickListener{
+
+		int code;
+		public Listener(int code){
+			this.code = code;
+		}
+		@Override
+		public void onClick(View arg0) {
+			switch(code){
+			case 0:
+				apply();
+				return;
+			case 1:
+				finish();
+				return;
+			}
+		}
+		
+	}
+	
 	@Override
 	public void onPause()
 	{
@@ -434,33 +452,6 @@ public class MpdecisionNew extends Activity
 			minCpus.setEnabled(false);
 		}
 		setCheckBoxes();
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.misc_tweaks_options_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	           
-	            Intent intent = new Intent(this, KernelTuner.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        case R.id.apply:
-	        	apply();
-	        	return true;
-	        case R.id.cancel:
-	        	finish();
-	        	return true;
-	        
-	            
-	    }
-	    return super.onOptionsItemSelected(item);
 	}
 	
 	private final void apply(){

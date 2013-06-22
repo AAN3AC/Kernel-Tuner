@@ -32,9 +32,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.twofortyfouram.locale.BreadCrumber;
@@ -79,33 +81,9 @@ public final class EditActivity extends Activity
         BundleScrubber.scrub(getIntent().getBundleExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE));
 
         setContentView(R.layout.locale_plugin);
+        setTitle(BreadCrumber.generateBreadcrumb(getApplicationContext(), getIntent(), getString(R.string.plugin_name)));
+        
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-        {
-            setupTitleApi11();
-        }
-        else
-        {
-            setTitle(BreadCrumber.generateBreadcrumb(getApplicationContext(), getIntent(), getString(R.string.plugin_name)));
-        }
-
-        /*
-         * if savedInstanceState is null, then then this is a new Activity instance and a check for
-         * EXTRA_BUNDLE is needed
-         */
-       /* if (null == savedInstanceState)
-        {
-            final Bundle forwardedBundle = getIntent().getBundleExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE);
-
-            if (PluginBundleManager.isBundleValid(forwardedBundle))
-            {
-                ((EditText) findViewById(android.R.id.text1)).setText(forwardedBundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_MESSAGE));
-            }
-        }*/
-        /*
-         * if savedInstanceState isn't null, there is no need to restore any Activity state directly via
-         * onSaveInstanceState(), as the EditText object handles that automatically
-         */
 		 DatabaseHandler db = new DatabaseHandler(this);
 		 List<String> profileList = new ArrayList<String>();
 		 List<Profile> profiles = db.getAllProfiles();
@@ -132,29 +110,50 @@ public final class EditActivity extends Activity
 
 				}
 			});
+		((Button)findViewById(R.id.ok)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.cancel)).setOnClickListener(new Listener(0));
+		((Button)findViewById(R.id.help)).setOnClickListener(new Listener(0));
 		
     }
 
-    @TargetApi(11)
-    private void setupTitleApi11()
-    {
-        CharSequence callingApplicationLabel = null;
-        try
-        {
-            callingApplicationLabel = getPackageManager().getApplicationLabel(getPackageManager().getApplicationInfo(getCallingPackage(), 0));
-        }
-        catch (final NameNotFoundException e)
-        {
-            if (Constants.IS_LOGGABLE)
-            {
-                Log.e(Constants.LOG_TAG, "Calling package couldn't be found", e); //$NON-NLS-1$
-            }
-        }
-        if (null != callingApplicationLabel)
-        {
-            setTitle(callingApplicationLabel);
-        }
+    class Listener implements OnClickListener{
+
+    	int code;
+    	
+    	public Listener(int code){
+    		this.code = code;
+    	}
+    	
+		@Override
+		public void onClick(View v) {
+			switch(code){
+			case 0:
+				finish();
+				return;
+			case 1:
+				mIsCancelled = true;
+	            finish();
+				return;
+			case 2:
+				try
+	            {
+	                startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(HELP_URL)));
+	            }
+	            catch (final Exception e)
+	            {
+	                if (Constants.IS_LOGGABLE)
+	                {
+	                    Log.e(Constants.LOG_TAG, "Couldn't start Activity", e);
+	                }
+	            }
+				return;
+			}
+			
+		}
+    	
     }
+    
+    
 
     @Override
     public void finish()
@@ -215,106 +214,6 @@ public final class EditActivity extends Activity
         super.finish();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu)
-    {
-        super.onCreateOptionsMenu(menu);
 
-        /*
-         * inflate the default menu layout from XML
-         */
-        getMenuInflater().inflate(R.menu.locale_save_dontsave, menu);
-
-        /*
-         * Set up the breadcrumbs for the ActionBar
-         */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-        {
-            setupActionBarApi11();
-        }
-        /*
-         * Dynamically load the home icon from the host package for Ice Cream Sandwich or later. Note that
-         * this leaves Honeycomb devices without the host's icon in the ActionBar, but eventually all
-         * Honeycomb devices should receive an OTA to Ice Cream Sandwich so this problem will go away.
-         */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-        {
-            setupActionBarApi14();
-        }
-
-        return true;
-    }
-
-    @TargetApi(11)
-    private void setupActionBarApi11()
-    {
-        getActionBar().setSubtitle(BreadCrumber.generateBreadcrumb(getApplicationContext(), getIntent(), getString(R.string.plugin_name)));
-    }
-
-    @TargetApi(14)
-    private void setupActionBarApi14()
-    {
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /*
-         * Note: There is a small TOCTOU error here, in that the host could be uninstalled right after
-         * launching the plug-in. That would cause getApplicationIcon() to return the default application
-         * icon. It won't fail, but it will return an incorrect icon.
-         * 
-         * In practice, the chances that the host will be uninstalled while the plug-in UI is running are very
-         * slim.
-         */
-        try
-        {
-            getActionBar().setIcon(getPackageManager().getApplicationIcon(getCallingPackage()));
-        }
-        catch (final NameNotFoundException e)
-        {
-            if (Constants.IS_LOGGABLE)
-            {
-                Log.w(Constants.LOG_TAG, "An error occurred loading the host's icon", e); //$NON-NLS-1$
-            }
-        }
-    }
-
-    @Override
-    public boolean onMenuItemSelected(final int featureId, final MenuItem item)
-    {
-        final int id = item.getItemId();
-
-        if (id == android.R.id.home)
-        {
-            finish();
-            return true;
-        }
-        else if (id == R.id.twofortyfouram_locale_menu_help)
-        {
-            try
-            {
-                startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(HELP_URL)));
-            }
-            catch (final Exception e)
-            {
-                if (Constants.IS_LOGGABLE)
-                {
-                    Log.e(Constants.LOG_TAG, "Couldn't start Activity", e);
-                }
-            }
-
-            return true;
-        }
-        else if (id == R.id.twofortyfouram_locale_menu_dontsave)
-        {
-            mIsCancelled = true;
-            finish();
-            return true;
-        }
-        else if (id == R.id.twofortyfouram_locale_menu_save)
-        {
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    
 }

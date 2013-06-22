@@ -18,20 +18,32 @@
 */
 package rs.pedjaapps.KernelTuner.ui;
 
-import android.app.Activity;
-import android.content.*;
-import android.os.*;
-import android.preference.*;
-import android.view.*;
-import android.widget.*;
-import android.widget.AdapterView.*;
-import java.util.*;
-import rs.pedjaapps.KernelTuner.*;
-import rs.pedjaapps.KernelTuner.entry.*;
-import rs.pedjaapps.KernelTuner.helpers.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import rs.pedjaapps.KernelTuner.R;
+import rs.pedjaapps.KernelTuner.entry.Profile;
+import rs.pedjaapps.KernelTuner.entry.Voltage;
+import rs.pedjaapps.KernelTuner.helpers.DatabaseHandler;
+import rs.pedjaapps.KernelTuner.helpers.IOHelper;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 import android.view.View.OnClickListener;
-import rs.pedjaapps.KernelTuner.tools.Tools;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileEditor extends Activity
 {
@@ -95,11 +107,6 @@ public class ProfileEditor extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-		
-		String theme = preferences.getString("theme", "light");
-		
-		setTheme(Tools.getPreferedTheme(theme));
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.profile_editor);
@@ -869,96 +876,77 @@ public class ProfileEditor extends Activity
 
 			s2wll.setVisibility(View.GONE);
 		}
-			
-	}
-
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.profile_editor_options_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-}
-
-
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-
-	if (item.getItemId() == R.id.save)
-	{
-    	
-		if(name.getText().toString().length()<1 || name.getText().toString().equals(""))
-		{
-			Toast.makeText(getApplicationContext(), getResources().getString(R.string.empty_profile_name), Toast.LENGTH_LONG).show();
-			
-		}
-		else{
-		int vsync = -1;
-		int fcharge = -1;
-		int sdcache = 0;
-		try{
-			sdcache = Integer.parseInt(ed4.getText().toString());
-		}catch(NumberFormatException e){
-			
-		}
-		if(vsyncOn.isChecked()){
-			vsync=1;
-		}
-		else if(vsyncOff.isChecked()){
-			vsync = 0;
-		}
 		
-		if(fchargeOn.isChecked()){
-			fcharge=1;
-		}
-		else if(fchargeOff.isChecked()){
-			fcharge = 0;
-		}
-		mtd = ed1.getText().toString();
-		mtu = ed2.getText().toString();
-		if(profileName!=null && !profileName.equals("")){
-			db.deleteProfileByName(profile);
-		}
-		Name = name.getText().toString();
-		Intent intent = new Intent();
-		intent.putExtra("Name", Name);
-		intent.putExtra("cpu0min", cpu0min);
-		intent.putExtra("cpu0max", cpu0max);
-		intent.putExtra("cpu1min", cpu1min);
-		intent.putExtra("cpu1max", cpu1max);
-		intent.putExtra("cpu2min", cpu2min);
-		intent.putExtra("cpu2max", cpu2max);
-		intent.putExtra("cpu3min", cpu3min);
-		intent.putExtra("cpu3max", cpu3max);
-		intent.putExtra("cpu0gov", cpu0gov);
-		intent.putExtra("cpu1gov", cpu1gov);
-		intent.putExtra("cpu2gov", cpu2gov);
-		intent.putExtra("cpu3gov", cpu3gov);
-		intent.putExtra("voltageProfile", voltage);
-		intent.putExtra("mtd", mtd);
-		intent.putExtra("mtu", mtu);
-		intent.putExtra("gpu2d", gpu2d);
-		intent.putExtra("gpu3d", gpu3d);
-		intent.putExtra("buttonsBacklight", ed3.getText().toString());
-		intent.putExtra("vsync", vsync);
-		intent.putExtra("fcharge", fcharge);
-		intent.putExtra("cdepth", cdepth);
-		intent.putExtra("io", scheduler);
-		intent.putExtra("sdcache", sdcache);
-		intent.putExtra("s2w", s2w);
-		setResult(RESULT_OK, intent);
-		finish();
-		}
+		((Button)findViewById(R.id.save)).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(name.getText().toString().length()<1 || name.getText().toString().equals(""))
+				{
+					Toast.makeText(getApplicationContext(), getResources().getString(R.string.empty_profile_name), Toast.LENGTH_LONG).show();
+					
+				}
+				else{
+				int vsync = -1;
+				int fcharge = -1;
+				int sdcache = 0;
+				try{
+					sdcache = Integer.parseInt(ed4.getText().toString());
+				}catch(NumberFormatException e){
+					
+				}
+				if(vsyncOn.isChecked()){
+					vsync=1;
+				}
+				else if(vsyncOff.isChecked()){
+					vsync = 0;
+				}
+				
+				if(fchargeOn.isChecked()){
+					fcharge=1;
+				}
+				else if(fchargeOff.isChecked()){
+					fcharge = 0;
+				}
+				mtd = ed1.getText().toString();
+				mtu = ed2.getText().toString();
+				if(profileName!=null && !profileName.equals("")){
+					db.deleteProfileByName(profile);
+				}
+				Name = name.getText().toString();
+				Intent intent = new Intent();
+				intent.putExtra("Name", Name);
+				intent.putExtra("cpu0min", cpu0min);
+				intent.putExtra("cpu0max", cpu0max);
+				intent.putExtra("cpu1min", cpu1min);
+				intent.putExtra("cpu1max", cpu1max);
+				intent.putExtra("cpu2min", cpu2min);
+				intent.putExtra("cpu2max", cpu2max);
+				intent.putExtra("cpu3min", cpu3min);
+				intent.putExtra("cpu3max", cpu3max);
+				intent.putExtra("cpu0gov", cpu0gov);
+				intent.putExtra("cpu1gov", cpu1gov);
+				intent.putExtra("cpu2gov", cpu2gov);
+				intent.putExtra("cpu3gov", cpu3gov);
+				intent.putExtra("voltageProfile", voltage);
+				intent.putExtra("mtd", mtd);
+				intent.putExtra("mtu", mtu);
+				intent.putExtra("gpu2d", gpu2d);
+				intent.putExtra("gpu3d", gpu3d);
+				intent.putExtra("buttonsBacklight", ed3.getText().toString());
+				intent.putExtra("vsync", vsync);
+				intent.putExtra("fcharge", fcharge);
+				intent.putExtra("cdepth", cdepth);
+				intent.putExtra("io", scheduler);
+				intent.putExtra("sdcache", sdcache);
+				intent.putExtra("s2w", s2w);
+				setResult(RESULT_OK, intent);
+				finish();
+				}
+			}
+		});
+			
 	}
-		
-	if (item.getItemId() == R.id.cancel)
-	{
-    	finish();
-	}
-
-return super.onOptionsItemSelected(item);
-
-}
 
 }
 

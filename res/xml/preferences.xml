@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                android:title="@string/prefs_general"
+                android:summary=""
+				android:icon="@drawable/settings">
+
+            <PreferenceCategory android:title="@string/preferences_boot_settings" >
+        <ListPreference
+            android:entries="@array/listDisplayWord"
+            android:entryValues="@array/listReturnValue"
+            android:key="boot"
+            android:summary="@string/preferences_boot_settings_apply_summary"
+            android:title="@string/preferences_boot_settings_apply_title"
+			android:defaultValue="boot"/>
+    </PreferenceCategory>
+    
+
+    <PreferenceCategory android:title="@string/other" >
+           <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="htc_one_workaround"
+            android:summary="@string/preferences_cpu_htcone_summary"
+            android:title="@string/preferences_cpu_htcone_title" />
+		<CheckBoxPreference
+            android:defaultValue="false"
+            android:key="reset"
+            android:summary="@string/prefs_reset_summary"
+            android:title="@string/prefs_reset" />
+		<EditTextPreference
+            android:defaultValue="1000"
+            android:key="refresh"
+            android:summary="@string/prefs_refresh_summary"
+            android:title="@string/prefs_refresh"
+			android:inputType="number"/>
+		<ListPreference
+            android:entries="@array/tempTitles"
+            android:entryValues="@array/tempValues"
+            android:key="temp"
+            android:summary=""
+            android:title="@string/prefs_temp" 
+            android:defaultValue="celsius"/>
+
+		<CheckBoxPreference
+			android:defaultValue="true"
+			android:key="profile_notifications"
+			android:summary="@string/prefs_toast_summary"
+			android:title="@string/prefs_toast" />
+		
+         </PreferenceCategory>	
+        
+</PreferenceScreen>
+<PreferenceScreen  android:icon="@drawable/log"
+    android:key="container"
+	android:title="LogCat Options">
+
+    
+<PreferenceCategory android:title="LogCat Options" >
+
+        <ListPreference
+            android:defaultValue="V"
+            android:entries="@array/level_entries"
+            android:entryValues="@array/level_values"
+            android:key="level"
+            android:summary=""
+            android:title="@string/prefs_level" />
+
+        <ListPreference
+            android:defaultValue="BRIEF"
+            android:entries="@array/format_entries"
+            android:entryValues="@array/format_values"
+            android:key="format"
+            android:summary="Log format to use when displaying log entries."
+            android:title="@string/prefs_format" />
+
+        <ListPreference
+            android:defaultValue="MAIN"
+            android:entries="@array/buffer_entries"
+            android:entryValues="@array/buffer_values"
+            android:key="buffer"
+            android:summary=""
+            android:title="@string/prefs_buffer" />
+
+        <ListPreference
+            android:defaultValue="MEDIUM"
+            android:entries="@array/textsize_entries"
+            android:entryValues="@array/textsize_values"
+            android:key="textsize"
+            android:summary="Text size to use when displaying log entries."
+            android:title="@string/prefs_text_size" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="keepScreenOn"
+            android:summary="@string/prefs_screen_on_summary"
+            android:title="@string/prefs_screen_on" />
+    </PreferenceCategory>
+
+        </PreferenceScreen>
+        <PreferenceScreen   android:icon="@drawable/misc"
+    android:key="container"
+		   android:title="@string/prefs_main"
+		   android:summary="@string/prefs_main_summary">
+
+		   <ListPreference
+			   android:entries="@array/unsupported_items_titles"
+			   android:entryValues="@array/unsupported_items_values"
+			   android:key="unsupported_items_display"
+			   android:summary=""
+			   android:title="@string/prefs_unsupported" 
+			   android:defaultValue="hide"/>
+		  
+		   <CheckBoxPreference
+			   android:defaultValue="false"
+			   android:key="main_style"
+			   android:title="@string/prefs_main_dialog"
+			   android:summary="@string/prefs_main_dialog_summary" />
+		  
+		   <CheckBoxPreference
+			   android:defaultValue="true"
+			   android:key="main_temp"
+			   android:summary="@string/prefs_temp_panel_summary"
+			   android:title="@string/prefs_temp_panel" />
+		   <CheckBoxPreference
+			   android:defaultValue="true"
+			   android:key="main_cpu"
+			   android:summary="@string/prefs_cpu_panel_summary"
+			   android:title="@string/prefs_cpu_panel" />
+		   <CheckBoxPreference
+			   android:defaultValue="true"
+			   android:key="main_toggles"
+			   android:summary="@string/prefs_toggles_panel_summary"
+			   android:title="@string/prefs_toggles_panel" />
+		   <CheckBoxPreference
+			   android:defaultValue="true"
+			   android:key="main_buttons"
+			   android:summary="@string/prefs_main_panel_summary"
+			   android:title="@string/prefs_main_panel" />
+	   </PreferenceScreen>
+      <PreferenceScreen android:title="@string/preferences_notification"
+    android:summary="@string/preferences_notification"
+    android:key="notificationScreen"  >
+    <PreferenceCategory android:title="@string/preferences_cpu" >
+     <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="notificationService"
+            android:summary="@string/preferences_notification_toggle_summary"
+            android:title="@string/preferences_notification_toggle_title" />
+       <ListPreference
+            android:entries="@array/notifNames"
+            android:entryValues="@array/notifValues"
+            android:key="notif"
+            android:title="@string/prefs_notif_items" 
+            android:defaultValue="freq"/>
+       </PreferenceCategory>
+
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/prefs_ui"
+	android:summary=""
+	android:icon="@drawable/theme">
+
+
+
+	
+
+	<ListPreference
+		android:entries="@array/tisNames"
+		android:entryValues="@array/tisValues"
+		android:key="tis_open_as"
+		android:summary=""
+		android:title="@string/prefs_tis_as" 
+		android:defaultValue="ask"/>
+
+	<ListPreference
+		android:entries="@array/cpuNames"
+		android:entryValues="@array/cpuValues"
+		android:key="show_cpu_as"
+		android:summary=""
+		android:title="@string/prefs_cpu_layout" 
+		android:defaultValue="full"/>
+
+	<CheckBoxPreference
+		android:defaultValue="true"
+		android:key="ads"
+		android:summary="@string/preferences_misc_ads_summary"
+		android:title="@string/preferences_misc_ads_title" />
+
+
+
+</PreferenceScreen>
+
+    
+    <PreferenceScreen android:icon="@drawable/misc" >
+
+    <PreferenceCategory android:title="@string/preferences_widget_settings" >
+        <EditTextPreference
+            android:defaultValue="30"
+            android:key="widget_time"
+            android:summary="@string/preferences_widget_settings_interval_summary"
+            android:title="@string/preferences_widget_settings_interval_title"
+			android:inputType="numberDecimal"/>
+    	<ListPreference
+            android:entries="@array/widget_bg_entry"
+            android:entryValues="@array/widget_bg_values"
+            android:key="widget_bg"
+            android:summary=""
+            android:title="@string/prefs_widget_bg"
+			android:defaultValue="grey"/>
+    
+    </PreferenceCategory>
+
+     
+</PreferenceScreen>
+    
+      
+
+</PreferenceScreen>

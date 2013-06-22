@@ -18,13 +18,26 @@
 */
 package rs.pedjaapps.KernelTuner.services;
 
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.util.*;
-import java.io.*;
-import rs.pedjaapps.KernelTuner.*;
-import rs.pedjaapps.KernelTuner.ui.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
+
+import rs.pedjaapps.KernelTuner.R;
+import rs.pedjaapps.KernelTuner.ui.KernelTuner;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.IBinder;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 
 
@@ -43,7 +56,6 @@ public class NotificationService extends Service
 	private String items;
 	private NotificationManager mNotificationManager;
 	private static final int NOTIFICATION_ID = 1;
-	private final static int PREFERENCES_MODE = Context.MODE_MULTI_PROCESS;
 	
 	@Override
 	public IBinder onBind(Intent intent)
@@ -68,7 +80,7 @@ public class NotificationService extends Service
 	
 	private  final void getPrefs(){
 		
-		sharedPrefs = this.getSharedPreferences("rs.pedjaapps.KernelTuner_preferences", PREFERENCES_MODE);
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		items = sharedPrefs.getString("notif", "freq");
 		System.out.println(items);
 	}
