@@ -12,7 +12,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.entry.LogEntry;
+import rs.pedjaapps.KernelTuner.model.LogEntry;
 import rs.pedjaapps.KernelTuner.helpers.LogEntryAdapter;
 import rs.pedjaapps.KernelTuner.helpers.Logcat;
 import rs.pedjaapps.KernelTuner.helpers.LogcatLevel;

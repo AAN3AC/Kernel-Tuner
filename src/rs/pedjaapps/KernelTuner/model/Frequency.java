@@ -1,4 +1,4 @@
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
 public class Frequency
 {

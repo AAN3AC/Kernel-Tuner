@@ -16,40 +16,31 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class VoltageEntry
+public final class BuildEntry
 {
 
-
-	private final int voltage;
-	private final String freq;
-	private final int type;
+	private final String name;
+	private final String value;
 
 
-
-	public VoltageEntry(final String freq, final int voltage, final int type)
+	public BuildEntry(final String name, final String value)
 	{
-		this.voltage = voltage;
-		this.freq = freq;
-		this.type = type;
+		this.name = name;
+		this.value = value;
+
 
 	}
-
-
-	public int getVoltage()
+    
+	public String getName()
 	{
-		return voltage;
-	}
-
-	public int getType()
-	{
-		return type;
+		return name;
 	}
 	
-	public String getFreq()
+	public String getValue()
 	{
-		return freq;
+		return value;
 	}
 
 }

@@ -16,34 +16,35 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class TimesEntry
+public final class ProfilesEntry
 {
 
-	private final int freq;
-	private final long time;
+	private final String name;
+	private final int check;
 
-	public TimesEntry(final int freq, final long time)
+
+
+	public ProfilesEntry(final String name, 
+			final int check)
 	{
-		this.freq = freq;
-		this.time = time;
+		this.name = name;
+		this.check = check;
+	
 		
 
 	}
 
 
-	public int getFreq()
+	public String getName()
 	{
-		return freq;
+		return name;
 	}
 
 
-	public long getTime()
-	{
-		return time;
+	public int getCheck(){
+		return check;
 	}
-
 	
-
 }

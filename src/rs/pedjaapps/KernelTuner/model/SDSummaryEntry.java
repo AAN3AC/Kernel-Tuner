@@ -16,51 +16,44 @@
  * You should have received a copy of the GNU General Public License
  * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
  */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-import android.graphics.drawable.Drawable;
+public class SDSummaryEntry {
 
-public class TMEntry
-{
-
-    int pid;
-	String name;
-	Drawable icon;
-	int rss;
-	int type;
-
-	public TMEntry(String name, int pid, Drawable icon, int rss, int type)
-	{
+	private String name;
+	private String hrSize;
+	private Long size;
+	private int percent;
+	private int icon;
+	
+	public SDSummaryEntry(String name, String hrSize, long size, int percent, int icon) {
+		super();
 		this.name = name;
-		this.pid = pid;
+		this.hrSize = hrSize;
+		this.size = size;
+		this.percent = percent;
 		this.icon = icon;
-		this.rss = rss;
-		this.type = type;
 	}
 
-	public int getPid()
-	{
-		return pid;
+	public String getName() {
+		return name;
+	}
+
+	public String getHrSize() {
+		return hrSize;
+	}
+
+	public Long getSize() {
+		return size;
+	}
+
+	public int getPercent() {
+		return percent;
 	}
 	
-	public int getType()
-	{
-		return type;
-	}
-	
-	public int getRss()
-	{
-		return rss;
-	}
-	
-	public Drawable getIcon()
-	{
+	public int getIcon() {
 		return icon;
 	}
 
-	public String getName()
-	{
-		return name;
-	}
 
 }

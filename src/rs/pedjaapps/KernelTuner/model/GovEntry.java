@@ -16,48 +16,38 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class SDScannerEntry
+public final class GovEntry
 {
 
-	private final String fileName;
-	private final int size;
-	private final String HRsize;
-	private final String path;
-	private final boolean folder;
+	private final String name;
+	private final String value;
+
+
+	/**
+	 * @param name Governor setting name(eg. sampling_rate)
+	 * @param value Governor setting value(eg. 1000)*/
+	public GovEntry(final String name, final String value)
+	{
+		this.name = name;
+		this.value = value;
+
+
+	}
+
+	/**
+	 * @return Governor setting name(eg. sampling_rate)*/
+	public String getName()
+	{
+		return name;
+	}
 	
-	public SDScannerEntry(String fileName, int size, String hRsize,
-			String path, boolean folder) {
-		super();
-		this.fileName = fileName;
-		this.size = size;
-		HRsize = hRsize;
-		this.path = path;
-		this.folder = folder;
+	/**
+	 * @return Governor setting value(eg. 1000)*/
+	public String getValue()
+	{
+		return value;
 	}
 
-	public String getFileName() {
-		return fileName;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public String getHRsize() {
-		return HRsize;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public boolean isFolder() {
-		return folder;
-	}
-
-
-	
-	
 }

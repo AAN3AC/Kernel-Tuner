@@ -28,7 +28,7 @@ import android.widget.SeekBar.*;
 import java.io.*;
 import java.util.*;
 import rs.pedjaapps.KernelTuner.*;
-import rs.pedjaapps.KernelTuner.entry.*;
+import rs.pedjaapps.KernelTuner.model.*;
 import rs.pedjaapps.KernelTuner.tools.*;
 
 import android.view.View.OnClickListener;

@@ -24,8 +24,8 @@ import java.util.List;
 
 import rs.pedjaapps.KernelTuner.Constants;
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.entry.Voltage;
-import rs.pedjaapps.KernelTuner.entry.VoltageEntry;
+import rs.pedjaapps.KernelTuner.model.Voltage;
+import rs.pedjaapps.KernelTuner.model.VoltageEntry;
 import rs.pedjaapps.KernelTuner.helpers.DatabaseHandler;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import rs.pedjaapps.KernelTuner.helpers.VoltageAdapter;

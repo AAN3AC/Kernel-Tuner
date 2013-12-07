@@ -51,7 +51,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.entry.BuildEntry;
+import rs.pedjaapps.KernelTuner.model.BuildEntry;
 import rs.pedjaapps.KernelTuner.helpers.BuildAdapter;
 import rs.pedjaapps.KernelTuner.tools.Tools;
 

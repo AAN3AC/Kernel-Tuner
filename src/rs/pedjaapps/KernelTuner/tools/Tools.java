@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import rs.pedjaapps.KernelTuner.Constants;
-import rs.pedjaapps.KernelTuner.entry.SysCtlDatabaseEntry;
+import rs.pedjaapps.KernelTuner.model.SysCtlDatabaseEntry;
 import rs.pedjaapps.KernelTuner.helpers.DatabaseHandler;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import android.content.Context;

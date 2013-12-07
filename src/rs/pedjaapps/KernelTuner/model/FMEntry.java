@@ -16,38 +16,43 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class GovEntry
+public class FMEntry
 {
 
-	private final String name;
-	private final String value;
+   private String name;
+   private String date;
+   private String size;
+   private int folder;
+   private String path;
 
-
-	/**
-	 * @param name Governor setting name(eg. sampling_rate)
-	 * @param value Governor setting value(eg. 1000)*/
-	public GovEntry(final String name, final String value)
-	{
-		this.name = name;
-		this.value = value;
-
-
-	}
-
-	/**
-	 * @return Governor setting name(eg. sampling_rate)*/
-	public String getName()
-	{
-		return name;
+   public FMEntry(String name, String date, String size, int folder, String path){
+	   this.name = name;
+	   this.date = date;
+	   this.size = size;
+	   this.folder = folder;
+	   this.path = path;
+   }
+   
+   public String getName(){
+	   return name;
+   }
+   
+	public String getSize(){
+		return size;
 	}
 	
-	/**
-	 * @return Governor setting value(eg. 1000)*/
-	public String getValue()
-	{
-		return value;
+	public String getDate(){
+		return date;
 	}
-
+	
+	public String getPath(){
+		return path;
+	}
+	
+	public int getFolder(){
+		return folder;
+	}
+   
 }

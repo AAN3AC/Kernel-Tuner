@@ -16,35 +16,41 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class ProfilesEntry
+public final class ChangelogEntry
 {
 
-	private final String name;
-	private final int check;
-
-
-
-	public ProfilesEntry(final String name, 
-			final int check)
-	{
-		this.name = name;
-		this.check = check;
+	private final boolean version;
+	private final String changelog;
+	private final int type;
+	private final String versionCode;
 	
-		
-
+	public ChangelogEntry(boolean version, String changelog, int type, String versionCode) {
+		this.version = version;
+		this.changelog = changelog;
+		this.type = type;
+		this.versionCode = versionCode;
 	}
 
-
-	public String getName()
-	{
-		return name;
+	public boolean isVersion() {
+		return version;
 	}
 
-
-	public int getCheck(){
-		return check;
+	public String getChangelog() {
+		return changelog;
 	}
 	
+	public String getVersionCode() {
+		return versionCode;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+
+	
+	
+
 }

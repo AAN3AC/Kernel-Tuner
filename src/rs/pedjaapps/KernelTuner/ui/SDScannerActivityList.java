@@ -34,7 +34,7 @@ import com.google.ads.*;
 import java.io.*;
 import java.util.*;
 import rs.pedjaapps.KernelTuner.*;
-import rs.pedjaapps.KernelTuner.entry.*;
+import rs.pedjaapps.KernelTuner.model.*;
 import rs.pedjaapps.KernelTuner.helpers.SDAdapter;
 
 import java.lang.Process;

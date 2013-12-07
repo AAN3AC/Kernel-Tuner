@@ -37,8 +37,9 @@ import com.stericson.RootTools.execution.*;
 import java.io.*;
 import java.util.*;
 import rs.pedjaapps.KernelTuner.*;
-import rs.pedjaapps.KernelTuner.entry.*;
+import rs.pedjaapps.KernelTuner.model.*;
 import rs.pedjaapps.KernelTuner.helpers.*;
+import rs.pedjaapps.KernelTuner.model.Menu;
 import rs.pedjaapps.KernelTuner.services.*;
 import rs.pedjaapps.KernelTuner.tools.*;
 
@@ -1606,5 +1607,31 @@ public class KernelTuner extends Activity implements Runnable
 			/ ((cpu2 + idle2) - (cpu1 + idle1));
 		return (int) (fLoad * 100);
 	}
+
+    private List<NavigationMenu> generateMenuList()
+    {
+        List<NavigationMenu> menu = new ArrayList<NavigationMenu>();
+
+        if(FSHelper.isCpuAvailable())
+            menu.add(new NavigationMenu(R.string.main_cpu_title, R.string.main_cpu_text, R.drawable.main_cpu));
+        //if(FSHelper.isTimesInStateAvailable())
+        //    options.add(new MainOption(MainOption.ID_TIMESINSTATE, R.string.main_tis_title, R.string.main_tis_text, R.drawable.main_times));
+        //options.add(new MainOption(MainOption.ID_GOVERNOR, R.string.main_gov_title, R.string.main_gov_text, R.drawable.main_governor));
+        if(FSHelper.isGpuAvailable())
+            menu.add(new NavigationMenu(R.string.main_gpu_title, R.string.main_gpu_text, R.drawable.main_gpu));
+        menu.add(new NavigationMenu(R.string.main_misc_title, R.string.main_misc_text, R.drawable.main_misc));
+        menu.add(new NavigationMenu(R.string.main_oom_title, R.string.main_oom_text, R.drawable.main_oom));
+
+        menu.add(new NavigationMenu(R.string.main_sd_title, R.string.main_sd_text, R.drawable.main_sd));
+        menu.add(new NavigationMenu(R.string.main_tm_title, R.string.main_tm_text, R.drawable.main_tm));
+        menu.add(new NavigationMenu(R.string.main_build_title, R.string.main_build_text, R.drawable.main_build));
+        menu.add(new NavigationMenu(R.string.main_sysctl_title, R.string.main_sysctl_text, R.drawable.main_sysctl));
+
+        menu.add(new NavigationMenu(R.string.main_logs_title, R.string.main_logs_text, R.drawable.main_log));
+        menu.add(new NavigationMenu(R.string.main_profiles_title, R.string.main_profiles_text, R.drawable.main_profiles));
+        menu.add(new NavigationMenu(R.string.main_sys_info_title, R.string.main_sys_info_text, R.drawable.main_info));
+
+        return menu;
+    }
 	
 }

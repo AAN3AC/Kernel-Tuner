@@ -16,41 +16,48 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class ChangelogEntry
+public final class TISEntry
 {
 
-	private final boolean version;
-	private final String changelog;
-	private final int type;
-	private final String versionCode;
-	
-	public ChangelogEntry(boolean version, String changelog, int type, String versionCode) {
-		this.version = version;
-		this.changelog = changelog;
-		this.type = type;
-		this.versionCode = versionCode;
-	}
+	private final String name;
+	private final String time;
+	private final String percent;
+	private final int progress;
 
-	public boolean isVersion() {
-		return version;
-	}
 
-	public String getChangelog() {
-		return changelog;
-	}
-	
-	public String getVersionCode() {
-		return versionCode;
-	}
 
-	public int getType() {
-		return type;
+	public TISEntry(final String name, final String time, final String percent, final int progress)
+	{
+		this.name = name;
+		this.time = time;
+		this.percent = percent;
+		this.progress = progress;
+		
+
 	}
 
 
-	
-	
+	public String getName()
+	{
+		return name;
+	}
+
+
+	public String getTime()
+	{
+		return time;
+	}
+
+	public String getPercent()
+	{
+		return percent;
+	}
+
+	public int getProgress()
+	{
+		return progress;
+	}
 
 }

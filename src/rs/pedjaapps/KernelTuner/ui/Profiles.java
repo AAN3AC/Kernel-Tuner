@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.entry.Profile;
-import rs.pedjaapps.KernelTuner.entry.ProfilesEntry;
+import rs.pedjaapps.KernelTuner.model.Profile;
+import rs.pedjaapps.KernelTuner.model.ProfilesEntry;
 import rs.pedjaapps.KernelTuner.helpers.DatabaseHandler;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import rs.pedjaapps.KernelTuner.helpers.ProfilesAdapter;

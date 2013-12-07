@@ -16,48 +16,34 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class TISEntry
+public final class TimesEntry
 {
 
-	private final String name;
-	private final String time;
-	private final String percent;
-	private final int progress;
+	private final int freq;
+	private final long time;
 
-
-
-	public TISEntry(final String name, final String time, final String percent, final int progress)
+	public TimesEntry(final int freq, final long time)
 	{
-		this.name = name;
+		this.freq = freq;
 		this.time = time;
-		this.percent = percent;
-		this.progress = progress;
 		
 
 	}
 
 
-	public String getName()
+	public int getFreq()
 	{
-		return name;
+		return freq;
 	}
 
 
-	public String getTime()
+	public long getTime()
 	{
 		return time;
 	}
 
-	public String getPercent()
-	{
-		return percent;
-	}
-
-	public int getProgress()
-	{
-		return progress;
-	}
+	
 
 }

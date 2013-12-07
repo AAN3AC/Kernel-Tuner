@@ -16,43 +16,40 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public class FMEntry
+public final class VoltageEntry
 {
 
-   private String name;
-   private String date;
-   private String size;
-   private int folder;
-   private String path;
 
-   public FMEntry(String name, String date, String size, int folder, String path){
-	   this.name = name;
-	   this.date = date;
-	   this.size = size;
-	   this.folder = folder;
-	   this.path = path;
-   }
-   
-   public String getName(){
-	   return name;
-   }
-   
-	public String getSize(){
-		return size;
+	private final int voltage;
+	private final String freq;
+	private final int type;
+
+
+
+	public VoltageEntry(final String freq, final int voltage, final int type)
+	{
+		this.voltage = voltage;
+		this.freq = freq;
+		this.type = type;
+
+	}
+
+
+	public int getVoltage()
+	{
+		return voltage;
+	}
+
+	public int getType()
+	{
+		return type;
 	}
 	
-	public String getDate(){
-		return date;
+	public String getFreq()
+	{
+		return freq;
 	}
-	
-	public String getPath(){
-		return path;
-	}
-	
-	public int getFolder(){
-		return folder;
-	}
-   
+
 }

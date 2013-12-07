@@ -16,31 +16,48 @@
 * You should have received a copy of the GNU General Public License
 * along with Kernel Tuner. If not, see <http://www.gnu.org/licenses/>.
 */
-package rs.pedjaapps.KernelTuner.entry;
+package rs.pedjaapps.KernelTuner.model;
 
-public final class BuildEntry
+public final class SDScannerEntry
 {
 
-	private final String name;
-	private final String value;
-
-
-	public BuildEntry(final String name, final String value)
-	{
-		this.name = name;
-		this.value = value;
-
-
-	}
-    
-	public String getName()
-	{
-		return name;
-	}
+	private final String fileName;
+	private final int size;
+	private final String HRsize;
+	private final String path;
+	private final boolean folder;
 	
-	public String getValue()
-	{
-		return value;
+	public SDScannerEntry(String fileName, int size, String hRsize,
+			String path, boolean folder) {
+		super();
+		this.fileName = fileName;
+		this.size = size;
+		HRsize = hRsize;
+		this.path = path;
+		this.folder = folder;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public String getHRsize() {
+		return HRsize;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public boolean isFolder() {
+		return folder;
+	}
+
+
+	
+	
 }

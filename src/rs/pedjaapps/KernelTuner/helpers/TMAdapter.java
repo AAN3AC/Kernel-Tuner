@@ -31,7 +31,7 @@ import android.widget.TextView;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.execution.CommandCapture;
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.entry.TMEntry;
+import rs.pedjaapps.KernelTuner.model.TMEntry;
 import rs.pedjaapps.KernelTuner.tools.Tools;
 
 public final class TMAdapter extends ArrayAdapter<TMEntry>

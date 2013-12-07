@@ -25,7 +25,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.entry.FMEntry;
+import rs.pedjaapps.KernelTuner.model.FMEntry;
 import rs.pedjaapps.KernelTuner.helpers.FMAdapter;
 import rs.pedjaapps.KernelTuner.tools.Tools;
 import android.app.Activity;

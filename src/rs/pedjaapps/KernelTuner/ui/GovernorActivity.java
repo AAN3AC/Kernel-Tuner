@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rs.pedjaapps.KernelTuner.R;
-import rs.pedjaapps.KernelTuner.entry.GovEntry;
+import rs.pedjaapps.KernelTuner.model.GovEntry;
 import rs.pedjaapps.KernelTuner.helpers.GovernorSettingsAdapter;
 import rs.pedjaapps.KernelTuner.helpers.IOHelper;
 import rs.pedjaapps.KernelTuner.tools.ChangeGovernorSettings;
